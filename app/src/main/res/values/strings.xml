@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Yarn Requirements</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="yarn_requirements">Yarn Requirements</string>
+    <string name="home">Home</string>
+    <string name="weights">Weights</string>
+    <string name="info">Info</string>
+
+    <string name="sweater">Sweater</string>
+    <string name="gauge_label">Gauge:</string>
+    <string name="size_label">Size:</string>
+    <string name="yarn_needed_label">Yarn Reqd:</string>
+    <string name="ball_size_label">Ball Size:</string>
+    <string name="balls_needed_label">Balls:</string>
+    <string name="needle_size">Needles</string>
+    <string name="gauge">Gauge</string>
+    <string name="gauge_length">stitches/4" or 10cm</string>
+    <string name="wpi">wpi (windings/inch)</string>
+    <string name="meter_abbr">m</string>
+    <string name="per">per</string>
+    <string name="ball">ball</string>
+    <string name="gram_abbr">g</string>
+    <string name="yarn_ball">ball</string>
+</resources>

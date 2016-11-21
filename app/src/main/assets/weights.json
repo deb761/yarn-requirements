@@ -1,0 +1,58 @@
+[
+  { "name" : "fingering",
+    "needles" : [2.25, 3.25],
+    "gauge" : [24, 32],
+    "windings" : [14],
+    "length" : 211,
+    "weight" : 50
+  },
+  { "name" : "sport",
+    "needles" : [3.25, 3.75],
+    "gauge" : [24, 26],
+    "windings" : [12],
+    "length" : 125,
+    "weight" : 50
+  },
+  { "name" : "dk",
+    "needles" : [3.75, 4.5],
+    "gauge" : [22],
+    "windings" : [11],
+    "length" : 100,
+    "weight" : 50
+  },
+  { "name" : "worsted",
+    "needles" : [4.5, 5],
+    "gauge" : [20],
+    "windings" : [9],
+    "length" : 100,
+    "weight" : 50
+  },
+  { "name" : "aran",
+    "needles" : [5, 6],
+    "gauge" : [18],
+    "windings" : [8],
+    "length" : 150,
+    "weight" : 100
+  },
+  { "name" : "bulky",
+    "needles" : [6, 9],
+    "gauge" : [14, 15],
+    "windings" : [7],
+    "length" : 125,
+    "weight" : 100
+  },
+  { "name" : "super-bulky",
+    "needles" : [8, 12],
+    "gauge" : [7, 11],
+    "windings" : [5, 6],
+    "length" : 40,
+    "weight" : 100
+  },
+  { "name" : "jumbo",
+    "needles" : [17],
+    "gauge" : [2, 6],
+    "windings" : [1, 4],
+    "length" : 10,
+    "weight" : 100
+  }
+]

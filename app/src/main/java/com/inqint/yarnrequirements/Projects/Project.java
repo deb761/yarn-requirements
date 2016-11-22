@@ -4,7 +4,7 @@ package com.inqint.yarnrequirements.Projects;
  * Created by deb on 4/25/16.
  */
 /* Enumeration for the gauge units: stitches per inch, 4 inches, or 10 cm */
-enum GaugeUnits { stsPerInch, stsPer4inch, stsPer10cm;
+public enum GaugeUnits { stsPerInch, stsPer4inch, stsPer10cm;
     private static GaugeUnits[] values = null;
     public static GaugeUnits fromInt(int i) {
         if (GaugeUnits.values == null) {
@@ -14,7 +14,7 @@ enum GaugeUnits { stsPerInch, stsPer4inch, stsPer10cm;
     }
 }
 /* Enumeration for shorter units: inches or cm */
-enum ShortLengthUnits { inches, cm;
+public enum ShortLengthUnits { inches, cm;
     private static ShortLengthUnits[] values = null;
     public static ShortLengthUnits fromInt(int i) {
         if (ShortLengthUnits.values == null) {
@@ -24,7 +24,7 @@ enum ShortLengthUnits { inches, cm;
     }
 }
 /* Enumeration for longer lengths: yards or meters */
-enum LongLengthUnits { yards, meters;
+public enum LongLengthUnits { yards, meters;
     private static LongLengthUnits[] values = null;
     public static LongLengthUnits fromInt(int i) {
         if (LongLengthUnits.values == null) {
@@ -39,6 +39,7 @@ public abstract class Project {
     private double gauge;
     private GaugeUnits gaugeUnits;
     private int thumbImageID;
+    private int imageID;
     private Class<?> aClass;
     protected int yarnNeeded;
     private LongLengthUnits yarnNeededUnits;
@@ -72,6 +73,8 @@ public abstract class Project {
     public int getThumbImageID() {
         return thumbImageID;
     }
+
+    public int getImageID() { return imageID; }
 
     public Class<?> getaClass() {
         return aClass;
@@ -206,7 +209,7 @@ public abstract class Project {
         return Math.sqrt(span * span + stitchCir * stitchCir) / 100.0;
     }
     // Calculate the number of balls needed, taking into account the selected units
-    protected void calcBallsNeeded()
+    public void calcBallsNeeded()
     {
         if (yarnNeededUnits == ballSizeUnits) {
             ballsNeeded = (int) Math.ceil((double) yarnNeeded / (double) ballSize);

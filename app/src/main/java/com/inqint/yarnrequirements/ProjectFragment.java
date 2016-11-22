@@ -4,9 +4,18 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.inqint.yarnrequirements.Projects.Project;
 
 
 /**
@@ -18,14 +27,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ProjectFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PROJECT = "project";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Project project;
 
     private OnFragmentInteractionListener mListener;
 
@@ -37,16 +41,13 @@ public class ProjectFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param project Parameter 1.
      * @return A new instance of fragment ProjectFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static ProjectFragment newInstance(String param1, String param2) {
+    public static ProjectFragment newInstance(Project project) {
         ProjectFragment fragment = new ProjectFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PROJECT, project.getName());
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,23 +56,176 @@ public class ProjectFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            project = ProjectContent.PROJECT_MAP.get(savedInstanceState.getString(ARG_PROJECT));
         }
     }
+
+    private View view;  // parent view
+    private Context context;
+    private EditText gaugeText;
+    private Spinner gaugeUnits;
+    private TextView yarnNeeded;
+    private Spinner yarnUnits;
+    private EditText ballSize;
+    private Spinner ballUnits;
+    private TextView ballsNeeded;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_project, container, false);
+        view = inflater.inflate(R.layout.fragment_project, container, false);
+        context = view.getContext();
+
+        initGaugeUnitSpinner();
+        initYarnUnitSpinner();
+        initBallUnitSpinner();
+
+        initTextChangedEvents();
+        initValues();
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    // Set up the Gauge Unit spinner
+    private void initGaugeUnitSpinner() {
+        Spinner spinner = (Spinner) view.findViewById(R.id.gaugeUnitsSpinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(),
+                R.array.gauge_units_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new GaugeUnitsSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+
+                super.onItemSelected(adapterView, view, pos, id);
+                updateResults();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void initYarnUnitSpinner() {
+        Spinner spinner = (Spinner) view.findViewById(R.id.yarnUnitsSpinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
+                R.array.long_length_units_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new YarnUnitsSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+
+                super.onItemSelected(adapterView, view, pos, id);
+                updateResults();
+            }
+        });
+    }
+
+    private void initBallUnitSpinner() {
+        Spinner spinner = (Spinner) view.findViewById(R.id.ballSizeSpinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
+                R.array.long_length_units_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new BallUnitsSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+
+                super.onItemSelected(adapterView, view, pos, id);
+                updateResults();
+            }
+        });
+    }
+
+    protected void initTextChangedEvents() {
+        final EditText gaugeText = (EditText) view.findViewById(R.id.editGauge);
+        gaugeText.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                String str = gaugeText.getText().toString();
+                if (str.length() > 0) {
+                    project.setGauge(Double.parseDouble(str));
+                    project.calcYarnRequired();
+                    updateResults();
+                }
+            }
+
+            public void beforeTextChanged(CharSequence arg0, int arg1,
+                                          int arg2, int arg3) {
+                //  Auto-generated method stub
+
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                //  Auto-generated method stub
+            }
+        });
+
+        final EditText ballSizeText = (EditText) view.findViewById(R.id.editBallSize);
+        ballSizeText.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                String str = ballSizeText.getText().toString();
+                if (str.length() > 0) {
+                    project.setBallSize(Integer.parseInt(str));
+                    project.calcBallsNeeded();
+                    updateResults();
+                }
+            }
+
+            public void beforeTextChanged(CharSequence arg0, int arg1,
+                                          int arg2, int arg3) {
+                //  Auto-generated method stub
+
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                //  Auto-generated method stub
+            }
+        });
+    }
+
+    protected void initValues() {
+        gaugeText = (EditText) view.findViewById(R.id.editGauge);
+        gaugeUnits = (Spinner) view.findViewById(R.id.gaugeUnitsSpinner);
+        yarnNeeded = (TextView) view.findViewById(R.id.yarnNeededText);
+        yarnUnits = (Spinner) view.findViewById(R.id.yarnUnitsSpinner);
+        ballSize = (EditText) view.findViewById(R.id.editBallSize);
+        ballUnits = (Spinner) view.findViewById(R.id.ballSizeSpinner);
+        ballsNeeded = (TextView) view.findViewById(R.id.ballsNeededText);
+
+        gaugeText.setText(Double.toString(project.getGauge()));
+        gaugeUnits.setSelection(project.getGaugeUnits().ordinal());
+        yarnNeeded.setText(Integer.toString(project.getYarnNeeded()));
+        yarnUnits.setSelection(project.getYarnNeededUnits().ordinal());
+        ballSize.setText(Integer.toString(project.getBallSize()));
+        ballUnits.setSelection(project.getBallSizeUnits().ordinal());
+        ballsNeeded.setText(Double.toString(project.getBallsNeeded()));
+    }
+
+    public void updateResults() {
+        TextView yarnNeeded = (TextView) view.findViewById(R.id.yarnNeededText);
+        TextView ballsNeeded = (TextView) view.findViewById(R.id.ballsNeededText);
+
+        yarnNeeded.setText(String.format("%1$?d", project.getYarnNeeded()));
+        ballsNeeded.setText(String.format("%1$.1f", project.getBallsNeeded()));
     }
 
     @Override

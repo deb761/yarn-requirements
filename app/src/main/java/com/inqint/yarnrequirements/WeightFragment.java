@@ -1,8 +1,12 @@
 package com.inqint.yarnrequirements;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,20 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.inqint.yarnrequirements.weights.WeightContent;
-import com.inqint.yarnrequirements.weights.WeightContent.WeightItem;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
  * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
  */
 public class WeightFragment extends Fragment {
 
-    private OnListFragmentInteractionListener mListener;
     private WeightContent weightContent;
 
     /**
@@ -66,8 +65,9 @@ public class WeightFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(new WeightRecyclerViewAdapter(WeightContent.ITEMS, mListener));
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
+            recyclerView.setAdapter(new WeightRecyclerViewAdapter(WeightContent.ITEMS));
         }
         return view;
     }
@@ -76,31 +76,57 @@ public class WeightFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        /*if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
-        }*/
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
+
     /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
+     * Created by deb on 11/21/16.
      */
-    public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(WeightItem item);
+
+    public static class DividerItemDecoration extends RecyclerView.ItemDecoration {
+
+        private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
+
+        private Drawable divider;
+
+        /**
+         * Default divider will be used
+         */
+        public DividerItemDecoration(Context context) {
+            final TypedArray styledAttributes = context.obtainStyledAttributes(ATTRS);
+            divider = styledAttributes.getDrawable(0);
+            styledAttributes.recycle();
+        }
+
+        /**
+         * Custom divider will be used
+         */
+        public DividerItemDecoration(Context context, int resId) {
+            divider = ContextCompat.getDrawable(context, resId);
+        }
+
+        @Override
+        public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+            int left = parent.getPaddingLeft();
+            int right = parent.getWidth() - parent.getPaddingRight();
+
+            int childCount = parent.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View child = parent.getChildAt(i);
+
+                RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
+
+                int top = child.getBottom() + params.bottomMargin;
+                int bottom = top + divider.getIntrinsicHeight();
+
+                divider.setBounds(left, top, right, bottom);
+                divider.draw(c);
+            }
+        }
     }
 }

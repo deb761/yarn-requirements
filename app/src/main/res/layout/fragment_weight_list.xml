@@ -10,4 +10,6 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context="com.inqint.yarnrequirements.WeightFragment"
+    android:divider="@color/colorPrimaryDark"
+    android:dividerHeight="1dp"
     tools:listitem="@layout/fragment_weight" />

@@ -14,17 +14,14 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link WeightItem} and makes a call to the
- * specified {@link WeightFragment.OnListFragmentInteractionListener}.
+ * {@link RecyclerView.Adapter} that can display a {@link WeightItem}.
  */
 public class WeightRecyclerViewAdapter extends RecyclerView.Adapter<WeightRecyclerViewAdapter.ViewHolder> {
 
     private final List<WeightItem> mValues;
-    private final WeightFragment.OnListFragmentInteractionListener mListener;
 
-    public WeightRecyclerViewAdapter(List<WeightItem> items, WeightFragment.OnListFragmentInteractionListener listener) {
+    public WeightRecyclerViewAdapter(List<WeightItem> items) {
         mValues = items;
-        mListener = listener;
     }
 
     @Override

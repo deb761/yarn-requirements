@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity
     private ProjectFragment projectFragment;
     private WeightFragment weightFragment;
     private InfoFragment infoFragment;
+    private boolean projectPage = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,18 +78,26 @@ public class MainActivity extends AppCompatActivity
                     .add(R.id.fragment_container, listFragment).commit();
         }
     }
-
+    /* When the back button is press, remove the nav drawer if open,
+     * or go back to the list of projects if a project is shown.
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (projectPage) {
+            // bring back the list
+            getSupportFragmentManager().beginTransaction().
+                    replace(R.id.fragment_container, listFragment).commit();
         } else {
             super.onBackPressed();
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+    /*
+     * Open the appropriate page when a nav item is selected.
+     */
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -104,6 +113,7 @@ public class MainActivity extends AppCompatActivity
             }
             getSupportFragmentManager().beginTransaction().
                     replace(R.id.fragment_container, weightFragment).commit();
+            projectPage = false;
 
         } else if (id == R.id.nav_info) {
             if (infoFragment == null) {
@@ -111,12 +121,15 @@ public class MainActivity extends AppCompatActivity
             }
             getSupportFragmentManager().beginTransaction().
                     replace(R.id.fragment_container, infoFragment).commit();
+            projectPage = false;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+    /*
+     * When a project is selected, open it's page
+     */
     @Override
     public void onListFragmentInteraction(Project project) {
         try {
@@ -126,6 +139,7 @@ public class MainActivity extends AppCompatActivity
         }
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.fragment_container, projectFragment).commit();
+        projectPage = true;
     }
 
     @Override

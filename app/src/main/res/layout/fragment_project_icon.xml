@@ -13,9 +13,9 @@
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/sweater"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        style="@style/labelStyle"
+        android:textAlignment="center"
+        android:text="@string/sweater" />
 </LinearLayout>

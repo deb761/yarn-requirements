@@ -33,9 +33,8 @@ public class WeightFragment extends Fragment {
     public WeightFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static WeightFragment newInstance(int columnCount) {
+    public static WeightFragment newInstance() {
         WeightFragment fragment = new WeightFragment();
         return fragment;
     }

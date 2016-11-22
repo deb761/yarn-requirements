@@ -11,18 +11,25 @@
     <string name="info">Info</string>
 
     <string name="sweater">Sweater</string>
-    <string name="gauge_label">Gauge:</string>
-    <string name="size_label">Size:</string>
-    <string name="yarn_needed_label">Yarn Reqd:</string>
-    <string name="ball_size_label">Ball Size:</string>
-    <string name="balls_needed_label">Balls:</string>
+    <string name="gauge_label">Gauge</string>
+    <string name="size_label">Size</string>
+    <string name="yarn_needed_label">Yarn Reqd</string>
+    <string name="ball_size_label">Ball Size</string>
+    <string name="balls_needed_label">Balls</string>
     <string name="needle_size">Needles</string>
     <string name="gauge">Gauge</string>
     <string name="gauge_length">stitches/4" or 10cm</string>
     <string name="wpi">wpi (windings/inch)</string>
     <string name="meter_abbr">m</string>
     <string name="per">per</string>
-    <string name="ball">ball</string>
     <string name="gram_abbr">g</string>
     <string name="yarn_ball">ball</string>
+
+    <!-- Info page text -->
+    <string name="copyright">© Deborah Engelmeyer, The Inquisitive Introvert, 2016</string>
+    <string name="sweater_sizing">Sweater and vest sizing based on Standard Body Measurements published by Craft Yarn Council.</string>
+    <string name="sweater_dims">Sweater and vest size dimensions are finished size.  Sweaters and vests are straight hip-length garments.  Sweaters have drop shoulders and tapered sleeves.  Use less yarn for fitted garments and more yarn for longer garments.</string>
+    <string name="blanket_info">Blanket and scarf measurements are finished size.  Add more yarn for tassels.</string>
+    <string name="hats_dims">Toque and Tam measurements are head size, not garment size.</string>
+    <string name="credits">Yarn estimates based on calculations by The Inquisitive Introvert.</string>
 </resources>

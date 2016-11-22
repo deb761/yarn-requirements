@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity
     private ProjectListFragment listFragment;
     private ProjectFragment projectFragment;
     private WeightFragment weightFragment;
+    private InfoFragment infoFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,14 +100,17 @@ public class MainActivity extends AppCompatActivity
                     replace(R.id.fragment_container, listFragment).commit();
         } else if (id == R.id.nav_weights) {
             if (weightFragment == null) {
-                weightFragment = new WeightFragment();
+                weightFragment = WeightFragment.newInstance();
             }
             getSupportFragmentManager().beginTransaction().
                     replace(R.id.fragment_container, weightFragment).commit();
 
         } else if (id == R.id.nav_info) {
+            if (infoFragment == null) {
+                infoFragment = InfoFragment.newInstance();
+            }
             getSupportFragmentManager().beginTransaction().
-                    replace(R.id.fragment_container, weightFragment).commit();
+                    replace(R.id.fragment_container, infoFragment).commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

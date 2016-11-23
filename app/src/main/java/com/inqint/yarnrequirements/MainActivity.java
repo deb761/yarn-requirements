@@ -14,6 +14,8 @@ import android.view.MenuItem;
 
 import com.inqint.yarnrequirements.Projects.Project;
 
+import java.lang.reflect.Constructor;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ProjectListFragment.OnListFragmentInteractionListener,
         ProjectFragment.OnFragmentInteractionListener {
@@ -133,7 +135,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(Project project) {
         try {
-            projectFragment = (ProjectFragment) project.getaClass().newInstance();
+            projectFragment = project.getNewFragment().apply(project);
         }
         catch (Exception e) {
         }

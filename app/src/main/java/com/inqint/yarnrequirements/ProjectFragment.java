@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.inqint.yarnrequirements.Projects.GaugeUnits;
+import com.inqint.yarnrequirements.Projects.LongLengthUnits;
 import com.inqint.yarnrequirements.Projects.Project;
 
 
@@ -26,7 +28,7 @@ import com.inqint.yarnrequirements.Projects.Project;
  * Use the {@link ProjectFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProjectFragment extends Fragment {
+public class ProjectFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     private static final String ARG_PROJECT = "project";
 
     private Project project;
@@ -49,6 +51,7 @@ public class ProjectFragment extends Fragment {
         Bundle args = new Bundle();
         args.putString(ARG_PROJECT, project.getName());
         fragment.setArguments(args);
+        fragment.project = project;
         return fragment;
     }
 
@@ -77,81 +80,51 @@ public class ProjectFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_project, container, false);
         context = view.getContext();
 
+        initValues();
         initGaugeUnitSpinner();
         initYarnUnitSpinner();
         initBallUnitSpinner();
 
         initTextChangedEvents();
-        initValues();
 
         return view;
     }
 
     // Set up the Gauge Unit spinner
     private void initGaugeUnitSpinner() {
-        Spinner spinner = (Spinner) view.findViewById(R.id.gaugeUnitsSpinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(),
                 R.array.gauge_units_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        gaugeUnits.setAdapter(adapter);
 
-        spinner.setOnItemSelectedListener(new GaugeUnitsSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-
-                super.onItemSelected(adapterView, view, pos, id);
-                updateResults();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        gaugeUnits.setOnItemSelectedListener(this);
     }
 
     private void initYarnUnitSpinner() {
-        Spinner spinner = (Spinner) view.findViewById(R.id.yarnUnitsSpinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
                 R.array.long_length_units_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        yarnUnits.setAdapter(adapter);
 
-        spinner.setOnItemSelectedListener(new YarnUnitsSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-
-                super.onItemSelected(adapterView, view, pos, id);
-                updateResults();
-            }
-        });
+        yarnUnits.setOnItemSelectedListener(this);
     }
 
     private void initBallUnitSpinner() {
-        Spinner spinner = (Spinner) view.findViewById(R.id.ballSizeSpinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
                 R.array.long_length_units_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        ballUnits.setAdapter(adapter);
 
-        spinner.setOnItemSelectedListener(new BallUnitsSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-
-                super.onItemSelected(adapterView, view, pos, id);
-                updateResults();
-            }
-        });
+        ballUnits.setOnItemSelectedListener(this);
     }
 
     protected void initTextChangedEvents() {
@@ -244,6 +217,32 @@ public class ProjectFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        switch (view.getId()) {
+            case R.id.gaugeUnitsSpinner:
+                project.setGaugeUnits(GaugeUnits.fromInt(pos));
+                project.calcYarnRequired();
+                break;
+            case R.id.lengthUnitsSpinner:
+                project.setYarnNeededUnits(LongLengthUnits.fromInt(pos));
+                break;
+            case R.id.ballSizeSpinner:
+                project.setBallSizeUnits(LongLengthUnits.fromInt(pos));
+                project.calcBallsNeeded();
+                break;
+            case R.id.ballFractSpinner:
+                project.setPartialBalls(pos != 0);
+                break;
+        }
+        updateResults();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this

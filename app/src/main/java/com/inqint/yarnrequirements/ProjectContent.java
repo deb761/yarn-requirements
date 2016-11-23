@@ -37,15 +37,15 @@ public class ProjectContent {
 
     static {
         // Add projects
-        addProject(new Mittens("Mittens", R.drawable.mittens_thumb, ProjectFragment.class));
-        addProject(new Gloves("Gloves", R.drawable.gloves_thumb, ProjectFragment.class));
-        addProject(new Socks("Socks", R.drawable.socks_thumb, ProjectFragment.class));
-        addProject(new Tam("Tam", R.drawable.tam_thumb, ProjectFragment.class));
-        addProject(new Scarf("Scarf", R.drawable.scarf_thumb, ProjectFragment.class));
-        addProject(new Toque("Toque", R.drawable.toque_thumb, ProjectFragment.class));
-        addProject(new Sweater("Sweater", R.drawable.sweater_thumb, ProjectFragment.class));
-        addProject(new Vest("Vest", R.drawable.vest_thumb, ProjectFragment.class));
-        addProject(new Blanket("Blanket", R.drawable.blanket_thumb, ProjectFragment.class));
+        addProject(new Mittens("Mittens", R.drawable.mittens_thumb, ProjectFragment::newInstance));
+        addProject(new Gloves("Gloves", R.drawable.gloves_thumb, ProjectFragment::newInstance));
+        addProject(new Socks("Socks", R.drawable.socks_thumb, ProjectFragment::newInstance));
+        addProject(new Tam("Tam", R.drawable.tam_thumb, ProjectFragment::newInstance));
+        addProject(new Scarf("Scarf", R.drawable.scarf_thumb, ProjectFragment::newInstance));
+        addProject(new Toque("Toque", R.drawable.toque_thumb, ProjectFragment::newInstance));
+        addProject(new Sweater("Sweater", R.drawable.sweater_thumb, ProjectFragment::newInstance));
+        addProject(new Vest("Vest", R.drawable.vest_thumb, ProjectFragment::newInstance));
+        addProject(new Blanket("Blanket", R.drawable.blanket_thumb, ProjectFragment::newInstance));
     }
 
     private static void addProject(Project project) {

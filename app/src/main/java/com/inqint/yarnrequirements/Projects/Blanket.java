@@ -1,12 +1,16 @@
 package com.inqint.yarnrequirements.Projects;
 
+import com.inqint.yarnrequirements.ProjectFragment;
+
+import java.util.function.Function;
+
 /**
  * Created by deb on 4/27/16.
  */
 public class Blanket extends Scarf {
 
-    public Blanket(String name, int thumbImageID, Class<?> aClass) {
-        super(name, thumbImageID, aClass);
+    public Blanket(String name, int thumbImageID, Function<Project, ProjectFragment> newFragment) {
+        super(name, thumbImageID, newFragment);
 
         setLength(60.0);
         setWidth(90.0);

@@ -1,38 +1,9 @@
 package com.inqint.yarnrequirements.Projects;
 
-/**
- * Created by deb on 4/25/16.
- */
-/* Enumeration for the gauge units: stitches per inch, 4 inches, or 10 cm */
-public enum GaugeUnits { stsPerInch, stsPer4inch, stsPer10cm;
-    private static GaugeUnits[] values = null;
-    public static GaugeUnits fromInt(int i) {
-        if (GaugeUnits.values == null) {
-            GaugeUnits.values = GaugeUnits.values();
-        }
-        return GaugeUnits.values[i];
-    }
-}
-/* Enumeration for shorter units: inches or cm */
-public enum ShortLengthUnits { inches, cm;
-    private static ShortLengthUnits[] values = null;
-    public static ShortLengthUnits fromInt(int i) {
-        if (ShortLengthUnits.values == null) {
-            ShortLengthUnits.values = ShortLengthUnits.values();
-        }
-        return ShortLengthUnits.values[i];
-    }
-}
-/* Enumeration for longer lengths: yards or meters */
-public enum LongLengthUnits { yards, meters;
-    private static LongLengthUnits[] values = null;
-    public static LongLengthUnits fromInt(int i) {
-        if (LongLengthUnits.values == null) {
-            LongLengthUnits.values = LongLengthUnits.values();
-        }
-        return LongLengthUnits.values[i];
-    }
-}
+import com.inqint.yarnrequirements.ProjectFragment;
+
+import java.util.function.Function;
+
 /* The basic definition of a knitting project.  This class is extended for each project type. */
 public abstract class Project {
     private String name;
@@ -40,7 +11,7 @@ public abstract class Project {
     private GaugeUnits gaugeUnits;
     private int thumbImageID;
     private int imageID;
-    private Class<?> aClass;
+    private Function<Project, ProjectFragment> newFragment;
     protected int yarnNeeded;
     private LongLengthUnits yarnNeededUnits;
     private int ballSize;
@@ -76,12 +47,12 @@ public abstract class Project {
 
     public int getImageID() { return imageID; }
 
-    public Class<?> getaClass() {
-        return aClass;
+    public Function<Project, ProjectFragment> getNewFragment() {
+        return newFragment;
     }
 
-    public void setaClass(Class<?> aClass) {
-        this.aClass = aClass;
+    public void setNewFragment(Function<Project, ProjectFragment> newFragment) {
+        this.newFragment = newFragment;
     }
 
     public int getYarnNeeded() {
@@ -136,12 +107,12 @@ public abstract class Project {
         ballSizeUnits = LongLengthUnits.meters;
         ballsNeeded = 0;
     }
-    public Project(String name, int thumbImageID, Class<?> aClass)
+    public Project(String name, int thumbImageID, Function<Project, ProjectFragment> newFragment)
     {
         this();
         this.name = name;
         this.thumbImageID = thumbImageID;
-        this.aClass = aClass;
+        this.newFragment = newFragment;
     }
 
     public abstract void calcYarnRequired();

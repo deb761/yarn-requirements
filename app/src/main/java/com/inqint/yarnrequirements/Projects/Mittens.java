@@ -2,8 +2,6 @@ package com.inqint.yarnrequirements.Projects;
 
 import com.inqint.yarnrequirements.ProjectFragment;
 
-import java.util.function.Function;
-
 /**
  * Created by deb on 4/27/16.
  */
@@ -29,8 +27,8 @@ public class Mittens extends Project {
         this.sizeUnits = sizeUnits;
     }
 
-    public Mittens(String name, int thumbImageID, Function<Project, ProjectFragment> newFragment) {
-        super(name, thumbImageID, newFragment);
+    public Mittens(String name, int thumbImageID, Class<ProjectFragment> fragmentClass) {
+        super(name, thumbImageID, fragmentClass);
     }
     // Estimate the hand size and calculate yarn for two mittens
     @Override

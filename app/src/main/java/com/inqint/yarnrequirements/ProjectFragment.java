@@ -243,6 +243,10 @@ public class ProjectFragment extends Fragment implements AdapterView.OnItemSelec
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this

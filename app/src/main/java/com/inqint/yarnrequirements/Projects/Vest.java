@@ -2,14 +2,12 @@ package com.inqint.yarnrequirements.Projects;
 
 import com.inqint.yarnrequirements.ProjectFragment;
 
-import java.util.function.Function;
-
 /**
  * Created by deb on 4/27/16.
  */
 public class Vest extends Sweater {
-    public Vest(String name, int thumbImageID, Function<Project, ProjectFragment> newFragment) {
-        super(name, thumbImageID, newFragment);
+    public Vest(String name, int thumbImageID, Class<ProjectFragment> fragmentClass) {
+        super(name, thumbImageID, fragmentClass);
     }
 
     /* Results of linear fit of Length to hips by Chest size:

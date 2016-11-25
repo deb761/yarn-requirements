@@ -2,8 +2,6 @@ package com.inqint.yarnrequirements.Projects;
 
 import com.inqint.yarnrequirements.ProjectFragment;
 
-import java.util.function.Function;
-
 /* The basic definition of a knitting project.  This class is extended for each project type. */
 public abstract class Project {
     private String name;
@@ -11,7 +9,7 @@ public abstract class Project {
     private GaugeUnits gaugeUnits;
     private int thumbImageID;
     private int imageID;
-    private Function<Project, ProjectFragment> newFragment;
+    private Class<ProjectFragment> fragment;
     protected int yarnNeeded;
     private LongLengthUnits yarnNeededUnits;
     private int ballSize;
@@ -47,12 +45,12 @@ public abstract class Project {
 
     public int getImageID() { return imageID; }
 
-    public Function<Project, ProjectFragment> getNewFragment() {
-        return newFragment;
+    public Class<ProjectFragment> getFragment() {
+        return fragment;
     }
 
-    public void setNewFragment(Function<Project, ProjectFragment> newFragment) {
-        this.newFragment = newFragment;
+    public void setFragment(Class<ProjectFragment> fragment) {
+        this.fragment = fragment;
     }
 
     public int getYarnNeeded() {
@@ -107,12 +105,12 @@ public abstract class Project {
         ballSizeUnits = LongLengthUnits.meters;
         ballsNeeded = 0;
     }
-    public Project(String name, int thumbImageID, Function<Project, ProjectFragment> newFragment)
+    public Project(String name, int thumbImageID, Class<ProjectFragment> fragment)
     {
         this();
         this.name = name;
         this.thumbImageID = thumbImageID;
-        this.newFragment = newFragment;
+        this.fragment = fragment;
     }
 
     public abstract void calcYarnRequired();

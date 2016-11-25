@@ -5,45 +5,8 @@ import com.inqint.yarnrequirements.ProjectFragment;
 /**
  * Created by deb on 4/27/16.
  */
-public class Scarf extends Project {
+public class Scarf extends DimensionProject {
 
-    private double length;
-    private double width;
-    private ShortLengthUnits lengthUnits;
-
-    private ShortLengthUnits widthUnits;
-
-    public double getLength() {
-        return length;
-    }
-
-    public void setLength(double length) {
-        this.length = length;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
-    public ShortLengthUnits getLengthUnits() {
-        return lengthUnits;
-    }
-
-    public void setLengthUnits(ShortLengthUnits units) {
-        this.lengthUnits = units;
-    }
-
-    public ShortLengthUnits getWidthUnits() {
-        return widthUnits;
-    }
-
-    public void setWidthUnits(ShortLengthUnits widthUnits) {
-        this.widthUnits = widthUnits;
-    }
 
     public Scarf(String name, int thumbImageID, Class<ProjectFragment> fragmentClass) {
         super(name, thumbImageID, fragmentClass);

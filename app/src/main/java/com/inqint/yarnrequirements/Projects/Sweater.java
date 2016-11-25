@@ -5,28 +5,7 @@ import com.inqint.yarnrequirements.ProjectFragment;
 /**
  * Created by deb on 4/25/16.
  */
-public class Sweater extends Project {
-
-    // Finished size around the chest
-    private double size = 40.0;
-    // Units for chest size
-    private ShortLengthUnits sizeUnits = ShortLengthUnits.inches;
-
-    public double getSize() {
-        return size;
-    }
-
-    public void setSize(double size) {
-        this.size = size;
-    }
-
-    public ShortLengthUnits getSizeUnits() {
-        return sizeUnits;
-    }
-
-    public void setChestUnits(ShortLengthUnits sizeUnits) {
-        this.sizeUnits = sizeUnits;
-    }
+public class Sweater extends SizeProject {
 
     public Sweater(String name, int thumbImageID, Class<ProjectFragment> fragmentClass) {
         super(name, thumbImageID, fragmentClass);

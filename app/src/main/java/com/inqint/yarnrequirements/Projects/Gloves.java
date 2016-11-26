@@ -1,13 +1,11 @@
 package com.inqint.yarnrequirements.Projects;
 
-import com.inqint.yarnrequirements.ProjectFragment;
-
 /**
  * Created by deb on 4/27/16.
  */
 public class Gloves extends Mittens {
-    public Gloves(String name, int thumbImageID, Class<ProjectFragment> fragmentClass) {
-        super(name, thumbImageID, fragmentClass);
+    public Gloves(String name, int thumbImageID, int imageID, Class<?> fragmentClass) {
+        super(name, thumbImageID, imageID, fragmentClass);
     }
 
     @Override

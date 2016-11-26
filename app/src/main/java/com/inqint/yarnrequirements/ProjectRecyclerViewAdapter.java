@@ -74,4 +74,5 @@ public class ProjectRecyclerViewAdapter extends RecyclerView.Adapter<ProjectRecy
             return super.toString() + " '" + mNameView.getText() + "'";
         }
     }
+
 }

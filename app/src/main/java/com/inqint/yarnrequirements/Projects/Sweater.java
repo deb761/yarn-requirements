@@ -1,14 +1,12 @@
 package com.inqint.yarnrequirements.Projects;
 
-import com.inqint.yarnrequirements.ProjectFragment;
-
 /**
  * Created by deb on 4/25/16.
  */
 public class Sweater extends SizeProject {
 
-    public Sweater(String name, int thumbImageID, Class<ProjectFragment> fragmentClass) {
-        super(name, thumbImageID, fragmentClass);
+    public Sweater(String name, int thumbImageID, int imageID, Class<?> fragmentClass) {
+        super(name, thumbImageID, imageID, fragmentClass);
     }
 
     @Override

@@ -1,0 +1,10 @@
+{
+  "gauge" : 20,
+  "gaugeUnits" : 1,
+  "yarnNeededUnits" : 0,
+  "ballSize" : 150,
+  "ballSizeUnits" : 0,
+  "partialBalls" : true,
+  "size" : 40,
+  "sizeUnits" : 0
+}

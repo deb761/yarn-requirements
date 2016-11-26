@@ -20,9 +20,6 @@ import com.inqint.yarnrequirements.Projects.Project;
  */
 public class ProjectListFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 3;
     private OnListFragmentInteractionListener mListener;
 
@@ -33,23 +30,15 @@ public class ProjectListFragment extends Fragment {
     public ProjectListFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static ProjectListFragment newInstance(int columnCount) {
         ProjectListFragment fragment = new ProjectListFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
     }
 
     @Override

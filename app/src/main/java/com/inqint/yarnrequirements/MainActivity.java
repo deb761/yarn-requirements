@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(Project project) {
         try {
-            projectFragment = project.getFragment().newInstance();
+            projectFragment = (ProjectFragment) project.getFragment().newInstance();
             projectFragment.setProject(project);
         }
         catch (Exception e) {

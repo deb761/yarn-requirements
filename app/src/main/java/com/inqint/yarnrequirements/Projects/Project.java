@@ -1,6 +1,11 @@
 package com.inqint.yarnrequirements.Projects;
 
+import android.content.SharedPreferences;
+
 import com.inqint.yarnrequirements.ProjectFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /* The basic definition of a knitting project.  This class is extended for each project type. */
 public abstract class Project {
@@ -9,7 +14,7 @@ public abstract class Project {
     private GaugeUnits gaugeUnits;
     private int thumbImageID;
     private int imageID;
-    private Class<ProjectFragment> fragment;
+    private Class<?> fragment;
     protected int yarnNeeded;
     private LongLengthUnits yarnNeededUnits;
     private int ballSize;
@@ -45,7 +50,7 @@ public abstract class Project {
 
     public int getImageID() { return imageID; }
 
-    public Class<ProjectFragment> getFragment() {
+    public Class<?> getFragment() {
         return fragment;
     }
 
@@ -105,11 +110,12 @@ public abstract class Project {
         ballSizeUnits = LongLengthUnits.meters;
         ballsNeeded = 0;
     }
-    public Project(String name, int thumbImageID, Class<ProjectFragment> fragment)
+    public Project(String name, int thumbImageID, int imageID, Class<?> fragment)
     {
         this();
         this.name = name;
         this.thumbImageID = thumbImageID;
+        this.imageID = imageID;
         this.fragment = fragment;
     }
 
@@ -190,5 +196,51 @@ public abstract class Project {
                     ballSize * yards2meters;
             ballsNeeded = (int) Math.ceil(yarn / ballMeters);
         }
+    }
+    /* Get the settings for the project from SharedPreferences if available,
+     * otherwise, get them from the json file asset.
+     */
+    public void getSettings(SharedPreferences preferences, JSONObject json) {
+        float defGauge = 20;
+        try {
+            defGauge = (float)json.getDouble("gauge");
+        }
+        catch (JSONException e) {}
+        gauge = preferences.getFloat("gauge", defGauge);
+
+        int defGaugeUnits = 2;
+        try {
+            defGaugeUnits = json.getInt("gaugeUnits");
+        }
+        catch (JSONException e) {}
+        gaugeUnits = GaugeUnits.fromInt(preferences.getInt("gaugeUnits", defGaugeUnits));
+
+        int defYarnNeededUnits = 0;
+        try {
+            defYarnNeededUnits = json.getInt("yarnNeededUnits");
+        }
+        catch (JSONException e) {}
+        yarnNeededUnits = LongLengthUnits.fromInt(preferences.getInt("yarnNeededUnits", defYarnNeededUnits));
+
+        int defBallSize = 100;
+        try {
+            defBallSize = json.getInt("ballSize");
+        }
+        catch (JSONException e) {}
+        ballSize = preferences.getInt("ballSize", defBallSize);
+
+        int defBallSizeUnits = 0;
+        try {
+            defBallSizeUnits = json.getInt("ballSizeUnits");
+        }
+        catch (JSONException e) {}
+        ballSizeUnits = LongLengthUnits.fromInt(preferences.getInt("ballSizeUnits", defBallSizeUnits));
+
+        boolean defPartialBalls = false;
+        try {
+            defPartialBalls = json.getBoolean("partialBalls");
+        }
+        catch (JSONException e) {}
+        partialBalls = preferences.getBoolean("partialBalls", defPartialBalls);
     }
 }

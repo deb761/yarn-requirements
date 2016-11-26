@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:columnCount="3"
     android:rowOrderPreserved="true"
+    android:id="@+id/gridLayout"
     tools:context="com.inqint.yarnrequirements.ProjectFragment">
 
     <TextView
@@ -35,7 +36,6 @@
         android:inputType="numberDecimal"
         android:ems="4"
         android:id="@+id/editGauge"
-        android:background="@drawable/rounded_box"
         android:layout_row="1"
         android:layout_column="1" />
 
@@ -60,15 +60,13 @@
         style="@style/paramTextStyle"
         android:inputType="numberDecimal"
         android:ems="4"
-        android:id="@+id/editLength"
-        android:editable="true"
-        android:background="@drawable/rounded_box"
+        android:id="@+id/editSize"
         android:layout_column="1"
         android:layout_row="2" />
 
     <Spinner
         style="@style/paramTextStyle"
-        android:id="@+id/lengthUnitsSpinner"
+        android:id="@+id/sizeUnitsSpinner"
         android:layout_column="2"
         android:layout_row="2" />
 
@@ -76,66 +74,46 @@
     <TextView
         style="@style/paramTextStyle"
         android:text="Yarn Needed:"
-        android:id="@+id/yarnNeededLabel"
-        android:layout_column="0"
-        android:layout_row="3" />
+        android:id="@+id/yarnNeededLabel" />
 
     <TextView
         style="@style/paramTextStyle"
         android:ems="4"
         android:id="@+id/yarnNeededText"
-        android:layout_column="1"
-        android:layout_row="3"
         android:text="1000" />
 
     <Spinner
         style="@style/paramTextStyle"
-        android:id="@+id/yarnUnitsSpinner"
-        android:layout_row="3"
-        android:layout_column="2" />
+        android:id="@+id/yarnUnitsSpinner" />
 
     <!-- Ball Size, row 4 -->
     <TextView
         style="@style/paramTextStyle"
         android:text="@string/ball_size_label"
-        android:id="@+id/ballSizeLabel"
-        android:layout_column="0"
-        android:layout_row="4" />
+        android:id="@+id/ballSizeLabel" />
 
     <EditText
         style="@style/paramTextStyle"
         android:id="@+id/editBallSize"
-        android:ems="4"
-        android:editable="true"
-        android:background="@drawable/rounded_box"
-        android:layout_column="1"
-        android:layout_row="4" />
+        android:ems="4" />
 
     <Spinner
         style="@style/paramTextStyle"
-        android:id="@+id/ballSizeSpinner"
-        android:layout_row="4"
-        android:layout_column="2" />
+        android:id="@+id/ballSizeSpinner" />
 
     <!-- Balls Needed, row 5 -->
     <TextView
         style="@style/paramTextStyle"
         android:text="@string/balls_needed_label"
-        android:id="@+id/ballsNeededLabel"
-        android:layout_column="0"
-        android:layout_row="5" />
+        android:id="@+id/ballsNeededLabel" />
 
     <TextView
         style="@style/paramTextStyle"
         android:id="@+id/ballsNeededText"
-        android:ems="4"
-        android:layout_column="1"
-        android:layout_row="5" />
+        android:ems="4" />
 
     <Spinner
         style="@style/paramTextStyle"
-        android:id="@+id/ballFractSpinner"
-        android:layout_row="4"
-        android:layout_column="2" />
+        android:id="@+id/ballFractSpinner" />
 
 </GridLayout>

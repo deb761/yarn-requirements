@@ -1,17 +1,16 @@
 package com.inqint.yarnrequirements.Projects;
 
-import com.inqint.yarnrequirements.ProjectFragment;
-
 /**
  * Created by deb on 4/27/16.
  */
 public class Scarf extends DimensionProject {
 
 
-    public Scarf(String name, int thumbImageID, Class<ProjectFragment> fragmentClass) {
-        super(name, thumbImageID, fragmentClass);
+    public Scarf(String name, int thumbImageID, int imageID, Class<?> fragmentClass) {
+        super(name, thumbImageID, imageID, fragmentClass);
     }
 
+    /* Make sure units are in SI units, then calculate based on the length & width */
     @Override
     public void calcYarnRequired()
     {

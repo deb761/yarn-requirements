@@ -24,6 +24,8 @@
     <string name="per">per</string>
     <string name="gram_abbr">g</string>
     <string name="yarn_ball">ball</string>
+    <string name="length_label">Length</string>
+    <string name="width_label">Width</string>
 
     <!-- Info page text -->
     <string name="copyright">© Deborah Engelmeyer, The Inquisitive Introvert, 2016</string>
@@ -32,4 +34,7 @@
     <string name="blanket_info">Blanket and scarf measurements are finished size.  Add more yarn for tassels.</string>
     <string name="hats_dims">Toque and Tam measurements are head size, not garment size.</string>
     <string name="credits">Yarn estimates based on calculations by The Inquisitive Introvert.</string>
+
+    <!-- initial settings for each project, use -im for US -->
+    <string name="project_settings">%s-im.json</string>
 </resources>

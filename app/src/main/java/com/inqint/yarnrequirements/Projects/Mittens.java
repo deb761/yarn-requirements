@@ -1,14 +1,12 @@
 package com.inqint.yarnrequirements.Projects;
 
-import com.inqint.yarnrequirements.ProjectFragment;
-
 /**
  * Created by deb on 4/27/16.
  */
 public class Mittens extends SizeProject {
 
-    public Mittens(String name, int thumbImageID, Class<ProjectFragment> fragmentClass) {
-        super(name, thumbImageID, fragmentClass);
+    public Mittens(String name, int thumbImageID, int imageID, Class<?> fragmentClass) {
+        super(name, thumbImageID, imageID, fragmentClass);
     }
     // Estimate the hand size and calculate yarn for two mittens
     @Override

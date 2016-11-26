@@ -37,15 +37,15 @@ public class ProjectContent {
 
     static {
         // Add projects
-        addProject(new Mittens("Mittens", R.drawable.mittens_thumb, ProjectFragment.class));
-        addProject(new Gloves("Gloves", R.drawable.gloves_thumb, ProjectFragment.class));
-        addProject(new Socks("Socks", R.drawable.socks_thumb, ProjectFragment.class));
-        addProject(new Tam("Tam", R.drawable.tam_thumb, ProjectFragment.class));
-        addProject(new Scarf("Scarf", R.drawable.scarf_thumb, ProjectFragment.class));
-        addProject(new Toque("Toque", R.drawable.toque_thumb, ProjectFragment.class));
-        addProject(new Sweater("Sweater", R.drawable.sweater_thumb, ProjectFragment.class));
-        addProject(new Vest("Vest", R.drawable.vest_thumb, ProjectFragment.class));
-        addProject(new Blanket("Blanket", R.drawable.blanket_thumb, ProjectFragment.class));
+        addProject(new Mittens("Mittens", R.drawable.mittens_thumb, R.drawable.mittens, SizeProjectFragment.class));
+        addProject(new Gloves("Gloves", R.drawable.gloves_thumb, R.drawable.gloves, SizeProjectFragment.class));
+        addProject(new Socks("Socks", R.drawable.socks_thumb, R.drawable.socks, SockProjectFragment.class));
+        addProject(new Tam("Tam", R.drawable.tam_thumb, R.drawable.tam, SizeProjectFragment.class));
+        addProject(new Scarf("Scarf", R.drawable.scarf_thumb, R.drawable.scarf, DimensionProjectFragment.class));
+        addProject(new Toque("Toque", R.drawable.toque_thumb, R.drawable.toque, SizeProjectFragment.class));
+        addProject(new Sweater("Sweater", R.drawable.sweater_thumb, R.drawable.sweater, SizeProjectFragment.class));
+        addProject(new Vest("Vest", R.drawable.vest_thumb, R.drawable.vest, SizeProjectFragment.class));
+        addProject(new Blanket("Blanket", R.drawable.blanket_thumb, R.drawable.blanket_thumb, DimensionProjectFragment.class));
     }
 
     private static void addProject(Project project) {

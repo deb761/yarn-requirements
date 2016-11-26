@@ -1,6 +1,9 @@
 package com.inqint.yarnrequirements.Projects;
 
-import com.inqint.yarnrequirements.ProjectFragment;
+import android.content.SharedPreferences;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by deb on 11/25/16.
@@ -46,7 +49,43 @@ public abstract class DimensionProject extends Project {
         this.widthUnits = widthUnits;
     }
 
-    public DimensionProject(String name, int thumbImageID, Class<ProjectFragment> fragmentClass) {
-        super(name, thumbImageID, fragmentClass);
+    public DimensionProject(String name, int thumbImageID, int imageID, Class<?> fragmentClass) {
+        super(name, thumbImageID, imageID, fragmentClass);
+    }
+
+
+    /* Get the settings for the project from SharedPreferences if available,
+     * otherwise, get them from the json file asset.
+     */
+    public void getSettings(SharedPreferences preferences, JSONObject json) {
+        super.getSettings(preferences, json);
+
+        float defLength = 0;
+        try {
+            defLength = (float)json.getDouble("length");
+        }
+        catch (JSONException e) {}
+        length = preferences.getFloat("length", defLength);
+
+        int defLengthUnits = 0;
+        try {
+            defLengthUnits = json.getInt("lengthUnits");
+        }
+        catch (JSONException e) {}
+        lengthUnits = ShortLengthUnits.fromInt(preferences.getInt("lengthUnits", defLengthUnits));
+
+        float defWidth = 0;
+        try {
+            defWidth = (float)json.getDouble("width");
+        }
+        catch (JSONException e) {}
+        width = preferences.getFloat("width", defWidth);
+
+        int defWidthUnits = 0;
+        try {
+            defWidthUnits = json.getInt("widthUnits");
+        }
+        catch (JSONException e) {}
+        widthUnits = ShortLengthUnits.fromInt(preferences.getInt("widthUnits", defWidthUnits));
     }
 }

@@ -1,0 +1,12 @@
+{
+  "gauge" : 20,
+  "gaugeUnits" : 1,
+  "yarnNeededUnits" : 0,
+  "ballSize" : 137,
+  "ballSizeUnits" : 0,
+  "partialBalls" : true,
+  "length" : 72,
+  "lengthUnits" : 0,
+  "width" : 60,
+  "widthUnits" : 0
+}

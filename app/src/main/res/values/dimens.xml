@@ -15,4 +15,5 @@
     <dimen name="thumb_width">64dp</dimen>
     <dimen name="weight_padding">5dp</dimen>
     <dimen name="param_text_size">18sp</dimen>
+    <dimen name="spinner_item_height">42dp</dimen>
 </resources>

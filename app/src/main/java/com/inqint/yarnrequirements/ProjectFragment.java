@@ -161,9 +161,9 @@ public class ProjectFragment extends Fragment implements AdapterView.OnItemSelec
     private void initGaugeUnitSpinner() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(),
-                R.array.gauge_units_array, android.R.layout.simple_spinner_item);
+                R.array.gauge_units_array, R.layout.spinner);
         // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner);
         // Apply the adapter to the spinner
         gaugeUnits.setAdapter(adapter);
 
@@ -173,9 +173,9 @@ public class ProjectFragment extends Fragment implements AdapterView.OnItemSelec
     private void initYarnUnitSpinner() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
-                R.array.long_length_units_array, android.R.layout.simple_spinner_item);
+                R.array.long_length_units_array, R.layout.spinner);
         // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner);
         // Apply the adapter to the spinner
         yarnUnits.setAdapter(adapter);
 
@@ -185,9 +185,9 @@ public class ProjectFragment extends Fragment implements AdapterView.OnItemSelec
     private void initBallUnitSpinner() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
-                R.array.long_length_units_array, android.R.layout.simple_spinner_item);
+                R.array.long_length_units_array, R.layout.spinner);
         // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner);
         // Apply the adapter to the spinner
         ballUnits.setAdapter(adapter);
 
@@ -197,9 +197,9 @@ public class ProjectFragment extends Fragment implements AdapterView.OnItemSelec
     private void initPartialBallSpinner() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
-                R.array.partial_ball_array, android.R.layout.simple_spinner_item);
+                R.array.partial_ball_array, R.layout.spinner);
         // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner);
         // Apply the adapter to the spinner
         partialBalls.setAdapter(adapter);
 

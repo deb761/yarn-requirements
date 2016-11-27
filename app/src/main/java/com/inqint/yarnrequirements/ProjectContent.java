@@ -45,7 +45,7 @@ public class ProjectContent {
         addProject(new Toque("Toque", R.drawable.toque_thumb, R.drawable.toque, SizeProjectFragment.class));
         addProject(new Sweater("Sweater", R.drawable.sweater_thumb, R.drawable.sweater, SizeProjectFragment.class));
         addProject(new Vest("Vest", R.drawable.vest_thumb, R.drawable.vest, SizeProjectFragment.class));
-        addProject(new Blanket("Blanket", R.drawable.blanket_thumb, R.drawable.blanket_thumb, DimensionProjectFragment.class));
+        addProject(new Blanket("Blanket", R.drawable.blanket_thumb, R.drawable.blanket, DimensionProjectFragment.class));
     }
 
     private static void addProject(Project project) {

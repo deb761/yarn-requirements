@@ -42,8 +42,8 @@ public class DimensionProjectFragment extends ProjectFragment {
         lengthText.setText(String.format("%.1f", dimensionProject.getLength()));
         lengthUnits.setSelection(dimensionProject.getLengthUnits().ordinal());
 
-        widthText.setText(String.format("%.1f", dimensionProject.getLength()));
-        widthUnits.setSelection(dimensionProject.getLengthUnits().ordinal());
+        widthText.setText(String.format("%.1f", dimensionProject.getWidth()));
+        widthUnits.setSelection(dimensionProject.getWidthUnits().ordinal());
 
         // Add size view to listview
         return view;
@@ -160,9 +160,9 @@ public class DimensionProjectFragment extends ProjectFragment {
     private void initSizeUnitSpinner() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
-                R.array.short_length_units_array, android.R.layout.simple_spinner_item);
+                R.array.short_length_units_array, R.layout.spinner);
         // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner);
         // Apply the adapter to the spinner
         lengthUnits.setAdapter(adapter);
 

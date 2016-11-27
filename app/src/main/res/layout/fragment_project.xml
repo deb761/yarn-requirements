@@ -90,11 +90,13 @@
     <TextView
         style="@style/paramTextStyle"
         android:text="@string/ball_size_label"
+        android:inputType="number"
         android:id="@+id/ballSizeLabel" />
 
     <EditText
         style="@style/paramTextStyle"
         android:id="@+id/editBallSize"
+        android:inputType="number"
         android:ems="4" />
 
     <Spinner

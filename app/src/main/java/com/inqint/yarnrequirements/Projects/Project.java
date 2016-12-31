@@ -194,7 +194,7 @@ public abstract class Project {
                     yarnNeeded * yards2meters;
             double ballMeters = (ballSizeUnits == LongLengthUnits.meters) ? ballSize :
                     ballSize * yards2meters;
-            ballsNeeded = (int) Math.ceil(yarn / ballMeters);
+            ballsNeeded = yarn / ballMeters;
         }
     }
     /* Get the settings for the project from SharedPreferences if available,

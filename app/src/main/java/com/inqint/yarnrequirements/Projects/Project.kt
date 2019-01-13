@@ -6,16 +6,16 @@ import org.json.JSONObject
 
 
 /* The basic definition of a knitting project.  This class is extended for each project type. */
-abstract class Project(var name: String?, var thumbImageID: Int, var imageID: Int) {
+abstract class Project(var name: String, var thumbImageID: Int, var imageID: Int) {
     var gauge: Double = 0.toDouble()
-    var gaugeUnits: GaugeUnits? = null
-    var fragment: Class<*>? = null
+    var gaugeUnits: GaugeUnits
+    lateinit var fragment: Class<*>
         protected set
     var yarnNeeded: Int = 0
         protected set
-    var yarnNeededUnits: LongLengthUnits? = null
+    var yarnNeededUnits: LongLengthUnits
     var ballSize: Int = 0
-    var ballSizeUnits: LongLengthUnits? = null
+    var ballSizeUnits: LongLengthUnits
     var ballsNeeded: Double = 0.toDouble()
         protected set
 

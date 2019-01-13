@@ -10,20 +10,12 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.GridLayout
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import com.inqint.yarnrequirements.Projects.GaugeUnits
 import com.inqint.yarnrequirements.Projects.LongLengthUnits
 import com.inqint.yarnrequirements.Projects.Project
-
 import org.json.JSONException
 import org.json.JSONObject
-
 import java.io.IOException
 import java.nio.charset.Charset
 
@@ -39,24 +31,25 @@ import java.nio.charset.Charset
 open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var mListener: OnFragmentInteractionListener? = null
-    protected lateinit var project: Project
+    public lateinit var project: Project
     protected lateinit var gridLayout: GridLayout
     protected lateinit var preferences: SharedPreferences
-    private var name: TextView? = null
-    private var image: ImageView? = null
-    private var gaugeText: EditText? = null
-    private var gaugeUnits: Spinner? = null
+    private lateinit var name: TextView
+    private lateinit var image: ImageView
+    private lateinit var gaugeText: EditText
+    private lateinit var gaugeUnits: Spinner
     protected lateinit var yarnNeeded: TextView
     protected lateinit var yarnUnits: Spinner
     protected lateinit var ballSize: EditText
     protected lateinit var ballUnits: Spinner
     protected lateinit var ballsNeeded: TextView
     protected lateinit var partialBalls: Spinner
+    protected lateinit var mview: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            project = ProjectContent.PROJECT_MAP.get(savedInstanceState!!.getString(ARG_PROJECT))!!
+            project = ProjectContent.PROJECT_MAP.get(key = savedInstanceState!!.getString(ARG_PROJECT)!!)!!
         }
     }
 
@@ -65,13 +58,13 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_project, container, false)
-        context = view.context
+        mview = inflater.inflate(R.layout.fragment_project, container, false)
+        val context = mview.context
         preferences = context.getSharedPreferences(project.name, Context.MODE_PRIVATE)
 
         val filename = String.format(
-            view.resources.getString(R.string.project_settings),
-            project.name!!.toLowerCase()
+            mview.resources.getString(R.string.project_settings),
+            project.name.toLowerCase()
         )
         project.getSettings(preferences, readDefaults(filename)!!)
 
@@ -83,11 +76,11 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         initTextChangedEvents()
 
-        name!!.text = project.name
-        image!!.setImageResource(project.imageID)
+        name.text = project.name
+        image.setImageResource(project.imageID)
         setInitialValues()
 
-        return view
+        return mview
     }
 
     // Read the default settings for the project
@@ -112,28 +105,28 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // Identify the various views
     open protected fun initValues() {
-        name = view.findViewById<View>(R.id.name) as TextView
-        image = view.findViewById<View>(R.id.image) as ImageView
-        gridLayout = view.findViewById(R.id.gridLayout) as GridLayout
-        gaugeText = view.findViewById(R.id.editGauge) as EditText
-        gaugeUnits = view.findViewById(R.id.gaugeUnitsSpinner) as Spinner
-        yarnNeeded = view.findViewById(R.id.yarnNeededText) as TextView
-        yarnUnits = view.findViewById(R.id.yarnUnitsSpinner) as Spinner
-        ballSize = view.findViewById(R.id.editBallSize) as EditText
-        ballUnits = view.findViewById(R.id.ballSizeSpinner) as Spinner
-        ballsNeeded = view.findViewById(R.id.ballsNeededText) as TextView
-        partialBalls = view.findViewById(R.id.ballFractSpinner) as Spinner
+        name = mview.findViewById<View>(R.id.name) as TextView
+        image = mview.findViewById<View>(R.id.image) as ImageView
+        gridLayout = mview.findViewById(R.id.gridLayout) as GridLayout
+        gaugeText = mview.findViewById(R.id.editGauge) as EditText
+        gaugeUnits = mview.findViewById(R.id.gaugeUnitsSpinner) as Spinner
+        yarnNeeded = mview.findViewById(R.id.yarnNeededText) as TextView
+        yarnUnits = mview.findViewById(R.id.yarnUnitsSpinner) as Spinner
+        ballSize = mview.findViewById(R.id.editBallSize) as EditText
+        ballUnits = mview.findViewById(R.id.ballSizeSpinner) as Spinner
+        ballsNeeded = mview.findViewById(R.id.ballsNeededText) as TextView
+        partialBalls = mview.findViewById(R.id.ballFractSpinner) as Spinner
     }
 
     // Set the values for all the views
     protected fun setInitialValues() {
-        gaugeText!!.setText(java.lang.Double.toString(project.gauge))
-        gaugeUnits!!.setSelection(project.gaugeUnits!!.ordinal)
-        yarnNeeded.text = Integer.toString(project.yarnNeeded)
-        yarnUnits.setSelection(project.yarnNeededUnits!!.ordinal)
-        ballSize.setText(Integer.toString(project.ballSize))
-        ballUnits.setSelection(project.ballSizeUnits!!.ordinal)
-        ballsNeeded.text = java.lang.Double.toString(project.ballsNeeded)
+        gaugeText.setText(String.format("%.1f", project.gauge))
+        gaugeUnits.setSelection(project.gaugeUnits.ordinal)
+        yarnNeeded.text = String.format("%d", project.yarnNeeded)
+        yarnUnits.setSelection(project.yarnNeededUnits.ordinal)
+        ballSize.setText(String.format("%d", project.ballSize))
+        ballUnits.setSelection(project.ballSizeUnits.ordinal)
+        ballsNeeded.text = String.format("%.1f", project.ballsNeeded)
         partialBalls.setSelection(if (project.isPartialBalls) 1 else 0)
     }
 
@@ -141,15 +134,15 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun initGaugeUnitSpinner() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         val adapter = ArrayAdapter.createFromResource(
-            view.context,
+            mview.context,
             R.array.gauge_units_array, R.layout.spinner
         )
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(R.layout.spinner)
         // Apply the adapter to the spinner
-        gaugeUnits!!.adapter = adapter
+        gaugeUnits.adapter = adapter
 
-        gaugeUnits!!.onItemSelectedListener = this
+        gaugeUnits.onItemSelectedListener = this
     }
 
     private fun initYarnUnitSpinner() {
@@ -195,10 +188,10 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     open protected fun initTextChangedEvents() {
-        gaugeText!!.addTextChangedListener(object : TextWatcher {
+        gaugeText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                val str = gaugeText!!.text.toString()
-                if (str.length > 0) {
+                val str = gaugeText.text.toString()
+                if (str.isNotEmpty()) {
                     project.gauge = java.lang.Double.parseDouble(str)
                     project.calcYarnRequired()
                     updateResults()
@@ -221,11 +214,11 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
         })
 
-        val ballSizeText = view.findViewById(R.id.editBallSize) as EditText
+        val ballSizeText = mview.findViewById(R.id.editBallSize) as EditText
         ballSizeText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 val str = ballSizeText.text.toString()
-                if (str.length > 0) {
+                if (str.isNotEmpty()) {
                     project.ballSize = Integer.parseInt(str)
                     project.calcBallsNeeded()
                     updateResults()
@@ -250,8 +243,8 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     fun updateResults() {
-        val yarnNeeded = view.findViewById(R.id.yarnNeededText) as TextView
-        val ballsNeeded = view.findViewById(R.id.ballsNeededText) as TextView
+        val yarnNeeded = mview.findViewById(R.id.yarnNeededText) as TextView
+        val ballsNeeded = mview.findViewById(R.id.ballsNeededText) as TextView
 
         yarnNeeded.text = String.format("%d", project.yarnNeeded)
         ballsNeeded.text = String.format("%.1f", project.ballsNeeded)
@@ -314,7 +307,7 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
          * @return A new instance of fragment ProjectFragment.
          */
         fun newInstance(project: Project): ProjectFragment {
-            val fragment = ProjectFragment(null)
+            val fragment = ProjectFragment()
             val args = Bundle()
             args.putString(ARG_PROJECT, project.name)
             fragment.arguments = args

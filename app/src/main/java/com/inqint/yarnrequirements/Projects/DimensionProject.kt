@@ -13,9 +13,9 @@ abstract class DimensionProject(name: String, thumbImageID: Int, imageID: Int, f
 
     var length: Double = 0.toDouble()
     var width: Double = 0.toDouble()
-    protected lateinit var lengthUnits: ShortLengthUnits
+    public lateinit var lengthUnits: ShortLengthUnits
 
-    protected lateinit var widthUnits: ShortLengthUnits
+    public lateinit var widthUnits: ShortLengthUnits
 
 
     /* Get the settings for the project from SharedPreferences if available,

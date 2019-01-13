@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.inqint.yarnrequirements.WeightContent.WeightItem
+import com.inqint.yarnrequirements.weights.WeightContent.WeightItem
 import java.util.*
 
 

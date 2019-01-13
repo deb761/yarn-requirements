@@ -10,51 +10,50 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
-import com.inqint.yarnrequirements.Projects.ShortLengthUnits
-import com.inqint.yarnrequirements.Projects.SizeProject
+import com.inqint.yarnrequirements.Projects.Socks
 
 /**
- * Created by deb on 11/25/16.
+ * Created by deb on 11/25/16. Converted to Kotlin 1/9/19
  */
 
-class SizeProjectFragment : ProjectFragment() {
+class SockProjectFragment : ProjectFragment() {
 
     private lateinit var sizeText: EditText
     private lateinit var sizeUnits: Spinner
-    private lateinit var sizeProject: SizeProject
+    private lateinit var socks: Socks
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        sizeProject = project as SizeProject
+        socks = project as Socks
+        // socks needs the foot sizes before the view is created
+        socks.getFootSizes(readDefaults("feet-sizes.json")!!)
         super.onCreateView(inflater, container, savedInstanceState)
 
         initSizeUnitSpinner()
+        sizeText.setText(String.format("%.1f", socks.size))
+        sizeUnits.setSelection(socks.sizeUnits.ordinal)
 
-        sizeText.setText(String.format("%f", sizeProject.size))
-        sizeUnits.setSelection(sizeProject.sizeUnits.ordinal)
-
-        // Add size view to listview
         return mview
     }
 
     override fun initValues() {
         super.initValues()
-        sizeText = mview.findViewById<View>(R.id.editSize) as EditText
-        sizeUnits = mview.findViewById<View>(R.id.sizeUnitsSpinner) as Spinner
+        sizeText = mview.findViewById(R.id.editSize) as EditText
+        sizeUnits = mview.findViewById(R.id.sizeUnitsSpinner) as Spinner
     }
 
     // Add the text changed event for the size value
     override fun initTextChangedEvents() {
         super.initTextChangedEvents()
 
-        sizeText.addTextChangedListener(object : TextWatcher {
+        sizeText!!.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 val str = sizeText.text.toString()
                 if (str.isNotEmpty()) {
-                    sizeProject.size = java.lang.Double.parseDouble(str)
-                    sizeProject.calcYarnRequired()
+                    socks.size = java.lang.Double.parseDouble(str)
+                    socks.calcYarnRequired()
                     updateResults()
                 }
             }
@@ -80,7 +79,7 @@ class SizeProjectFragment : ProjectFragment() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         val adapter = ArrayAdapter.createFromResource(
             context,
-            R.array.short_length_units_array, R.layout.spinner
+            R.array.shoe_size_units_array, R.layout.spinner
         )
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(R.layout.spinner)
@@ -95,7 +94,7 @@ class SizeProjectFragment : ProjectFragment() {
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
         when (parent.id) {
             R.id.sizeUnitsSpinner -> {
-                sizeProject.sizeUnits = ShortLengthUnits.fromInt(pos)
+                socks.sizeUnits = Socks.ShoeSizeUnits.fromInt(pos)
                 project.calcYarnRequired()
                 updateResults()
             }

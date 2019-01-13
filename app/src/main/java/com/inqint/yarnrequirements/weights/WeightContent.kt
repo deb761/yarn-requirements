@@ -1,4 +1,4 @@
-package com.inqint.yarnrequirements
+package com.inqint.yarnrequirements.weights
 
 import org.json.JSONArray
 import org.json.JSONException

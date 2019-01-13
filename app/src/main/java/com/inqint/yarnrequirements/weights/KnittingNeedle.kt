@@ -1,4 +1,4 @@
-package com.inqint.yarnrequirements
+package com.inqint.yarnrequirements.weights
 
 class KnittingNeedle(private val size: Double) {
 

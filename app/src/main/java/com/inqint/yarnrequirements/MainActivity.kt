@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import com.inqint.yarnrequirements.Projects.Project
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity() : AppCompatActivity(),
+open class MainActivity() : AppCompatActivity(),
     ProjectListFragment.OnListFragmentInteractionListener,
     ProjectFragment.OnFragmentInteractionListener{
 
@@ -23,7 +23,7 @@ class MainActivity() : AppCompatActivity(),
     private var phoneDevice = true // used to force portrait mode
 
     //private InfoFragment infoFragment;
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    protected val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
                 replaceFragment(listFragment, R.id.fragment_container)

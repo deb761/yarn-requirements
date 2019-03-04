@@ -48,7 +48,7 @@ class SockProjectFragment : ProjectFragment() {
     override fun initTextChangedEvents() {
         super.initTextChangedEvents()
 
-        sizeText!!.addTextChangedListener(object : TextWatcher {
+        sizeText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 val str = sizeText.text.toString()
                 if (str.isNotEmpty()) {

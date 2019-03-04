@@ -34,11 +34,11 @@ class DimensionProjectFragment : ProjectFragment() {
 
         initSizeUnitSpinner()
 
-        lengthText.setText(String.format("%.1f", dimensionProject!!.length))
-        lengthUnits.setSelection(dimensionProject!!.lengthUnits.ordinal)
+        lengthText.setText(String.format("%.1f", dimensionProject.length))
+        lengthUnits.setSelection(dimensionProject.lengthUnits.ordinal)
 
-        widthText.setText(String.format("%.1f", dimensionProject!!.width))
-        widthUnits.setSelection(dimensionProject!!.widthUnits.ordinal)
+        widthText.setText(String.format("%.1f", dimensionProject.width))
+        widthUnits.setSelection(dimensionProject.widthUnits.ordinal)
 
         // Add dimension view to listview
         return mview
@@ -57,7 +57,7 @@ class DimensionProjectFragment : ProjectFragment() {
         widthLabel.setTextColor(lengthLabel.textColors)
         widthLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX, lengthLabel.textSize)
         widthText = EditText(context)
-        widthText.setTextColor(lengthText!!.textColors)
+        widthText.setTextColor(lengthText.textColors)
         widthText.setTextSize(TypedValue.COMPLEX_UNIT_PX, lengthText.textSize)
         //widthText.setEms(lengthText.getMaxEms());
         widthUnits = Spinner(context)
@@ -161,7 +161,7 @@ class DimensionProjectFragment : ProjectFragment() {
     private fun initSizeUnitSpinner() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         val adapter = ArrayAdapter.createFromResource(
-            context,
+            context!!,
             R.array.short_length_units_array, R.layout.spinner
         )
         // Specify the layout to use when the list of choices appears

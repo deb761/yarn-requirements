@@ -1,50 +1,56 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.inqint.yarnrequirements.InfoFragment">
+<android.support.v4.widget.NestedScrollView
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/labelStyle"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/copyright" />
+        android:orientation="vertical"
+        tools:context="com.inqint.yarnrequirements.InfoFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/labelStyle"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/sweater_sizing" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/labelStyle"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/copyright" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/labelStyle"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/sweater_dims" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/labelStyle"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/sweater_sizing" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/labelStyle"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/blanket_info" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/labelStyle"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/sweater_dims" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/labelStyle"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/hats_dims" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/labelStyle"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/blanket_info" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/labelStyle"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/credits" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/labelStyle"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/hats_dims" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/labelStyle"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/credits" />
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -1,134 +1,127 @@
- <LinearLayout
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gridLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_margin="@dimen/fab_margin"
+    android:columnCount="3"
+    android:rowOrderPreserved="true"
+    tools:context="com.inqint.yarnrequirements.ProjectFragment">
 
-    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/gridLayout"
-        android:layout_width="match_parent"
-        android:layout_margin="@dimen/fab_margin"
-        android:columnCount="3"
-        android:rowOrderPreserved="true"
-        tools:context="com.inqint.yarnrequirements.ProjectFragment"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/name"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:text="@string/sweater" />
 
-        <TextView
-            android:id="@+id/name"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:text="@string/sweater" />
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_columnSpan="2"
+        android:contentDescription="@string/sweater"
+        android:src="@drawable/sweater" />
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_columnSpan="2"
-            android:contentDescription="@string/sweater"
-            android:src="@drawable/sweater" />
+    <!-- Gauge, Row 1 -->
+    <TextView
+        android:id="@+id/gaugeLabel"
+        style="@style/paramTextStyle"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:labelFor="@+id/editGauge"
+        android:text="@string/gauge_label" />
 
-        <!-- Gauge, Row 1 -->
-        <TextView
-            android:id="@+id/gaugeLabel"
-            style="@style/paramTextStyle"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:labelFor="@+id/editGauge"
-            android:text="@string/gauge_label" />
+    <EditText
+        android:id="@+id/editGauge"
+        style="@style/paramTextStyle"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:ems="4"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        tools:targetApi="o" />
 
-        <EditText
-            android:id="@+id/editGauge"
-            style="@style/paramTextStyle"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:ems="4"
-            android:importantForAutofill="no"
-            android:inputType="numberDecimal"
-            tools:targetApi="o" />
+    <Spinner
+        android:id="@+id/gaugeUnitsSpinner"
+        style="@style/paramTextStyle"
+        android:layout_row="1"
+        android:layout_column="2" />
 
-        <Spinner
-            android:id="@+id/gaugeUnitsSpinner"
-            style="@style/paramTextStyle"
-            android:layout_row="1"
-            android:layout_column="2" />
+    <!-- Size, Row 2 -->
+    <TextView
+        android:id="@+id/sizeLabel"
+        style="@style/paramTextStyle"
+        android:layout_row="2"
+        android:layout_column="0"
+        android:labelFor="@+id/editSize"
+        android:text="@string/size_label" />
 
-        <!-- Size, Row 2 -->
-        <TextView
-            android:id="@+id/sizeLabel"
-            style="@style/paramTextStyle"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:labelFor="@+id/editSize"
-            android:text="@string/size_label" />
+    <EditText
+        android:id="@+id/editSize"
+        style="@style/paramTextStyle"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:ems="4"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        tools:targetApi="o" />
 
-        <EditText
-            android:id="@+id/editSize"
-            style="@style/paramTextStyle"
-            android:layout_row="2"
-            android:layout_column="1"
-            android:ems="4"
-            android:importantForAutofill="no"
-            android:inputType="numberDecimal"
-            tools:targetApi="o" />
+    <Spinner
+        android:id="@+id/sizeUnitsSpinner"
+        style="@style/paramTextStyle"
+        android:layout_row="2"
+        android:layout_column="2" />
 
-        <Spinner
-            android:id="@+id/sizeUnitsSpinner"
-            style="@style/paramTextStyle"
-            android:layout_row="2"
-            android:layout_column="2" />
+    <!-- Yarn Needed, Row 3 -->
+    <TextView
+        android:id="@+id/yarnNeededLabel"
+        style="@style/paramTextStyle"
+        android:text="@string/yarn_needed" />
 
-        <!-- Yarn Needed, Row 3 -->
-        <TextView
-            android:id="@+id/yarnNeededLabel"
-            style="@style/paramTextStyle"
-            android:text="@string/yarn_needed" />
+    <TextView
+        android:id="@+id/yarnNeededText"
+        style="@style/paramTextStyle"
+        android:ems="4" />
 
-        <TextView
-            android:id="@+id/yarnNeededText"
-            style="@style/paramTextStyle"
-            android:ems="4" />
+    <Spinner
+        android:id="@+id/yarnUnitsSpinner"
+        style="@style/paramTextStyle" />
 
-        <Spinner
-            android:id="@+id/yarnUnitsSpinner"
-            style="@style/paramTextStyle" />
+    <!-- Ball Size, row 4 -->
+    <TextView
+        android:id="@+id/ballSizeLabel"
+        style="@style/paramTextStyle"
+        android:labelFor="@+id/editBallSize"
+        android:text="@string/ball_size_label" />
 
-        <!-- Ball Size, row 4 -->
-        <TextView
-            android:id="@+id/ballSizeLabel"
-            style="@style/paramTextStyle"
-            android:labelFor="@+id/editBallSize"
-            android:text="@string/ball_size_label" />
+    <EditText
+        android:id="@+id/editBallSize"
+        style="@style/paramTextStyle"
+        android:ems="4"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        tools:targetApi="o" />
 
-        <EditText
-            android:id="@+id/editBallSize"
-            style="@style/paramTextStyle"
-            android:ems="4"
-            android:importantForAutofill="no"
-            android:inputType="number"
-            tools:targetApi="o" />
+    <Spinner
+        android:id="@+id/ballSizeSpinner"
+        style="@style/paramTextStyle" />
 
-        <Spinner
-            android:id="@+id/ballSizeSpinner"
-            style="@style/paramTextStyle" />
+    <!-- Balls Needed, row 5 -->
+    <TextView
+        android:id="@+id/ballsNeededLabel"
+        style="@style/paramTextStyle"
+        android:text="@string/balls_needed_label" />
 
-        <!-- Balls Needed, row 5 -->
-        <TextView
-            android:id="@+id/ballsNeededLabel"
-            style="@style/paramTextStyle"
-            android:text="@string/balls_needed_label" />
+    <TextView
+        android:id="@+id/ballsNeededText"
+        style="@style/paramTextStyle"
+        android:ems="4" />
 
-        <TextView
-            android:id="@+id/ballsNeededText"
-            style="@style/paramTextStyle"
-            android:ems="4" />
+    <Spinner
+        android:id="@+id/ballFractSpinner"
+        style="@style/paramTextStyle" />
 
-        <Spinner
-            android:id="@+id/ballFractSpinner"
-            style="@style/paramTextStyle" />
-
-    </GridLayout>
-</LinearLayout>
+</GridLayout>

@@ -47,4 +47,25 @@
         android:layout_margin="@dimen/text_margin"
         android:text="@string/credits" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/labelStyle"
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/icons" />
+
+        <Button
+            android:id="@+id/icon8Link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/icon8" />
+    </LinearLayout>
+
 </LinearLayout>

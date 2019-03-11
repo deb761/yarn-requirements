@@ -35,4 +35,6 @@
     <!-- initial settings for each project, use -im for US -->
     <string name="project_settings">%s-im.json</string>
     <string name="yarn_needed">Yarn Needed:</string>
+    <string name="icon8">Icon8</string>
+    <string name="icons">Icons:</string>
 </resources>

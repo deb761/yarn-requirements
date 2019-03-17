@@ -32,7 +32,7 @@ class SizeProjectFragment : ProjectFragment() {
 
         initSizeUnitSpinner()
 
-        sizeText.setText(String.format("%f", sizeProject.size))
+        sizeText.setText(String.format("%.1f", sizeProject.size))
         sizeUnits.setSelection(sizeProject.sizeUnits.ordinal)
 
         // Add size view to listview
@@ -43,6 +43,11 @@ class SizeProjectFragment : ProjectFragment() {
         super.initValues()
         sizeText = mview.findViewById<View>(R.id.editSize) as EditText
         sizeUnits = mview.findViewById<View>(R.id.sizeUnitsSpinner) as Spinner
+    }
+
+    override fun updateResults() {
+        super.updateResults()
+        sizeText.setText(String.format("%.1f", sizeProject.size))
     }
 
     // Add the text changed event for the size value

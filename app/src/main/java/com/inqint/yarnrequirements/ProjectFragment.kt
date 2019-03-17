@@ -242,7 +242,7 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
         })
     }
 
-    fun updateResults() {
+    open fun updateResults() {
         val yarnNeeded = mview.findViewById(R.id.yarnNeededText) as TextView
         val ballsNeeded = mview.findViewById(R.id.ballsNeededText) as TextView
 

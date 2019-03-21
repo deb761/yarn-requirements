@@ -32,8 +32,11 @@ class SockProjectFragment : ProjectFragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         initSizeUnitSpinner()
+
+        userUpdate = false // let TextWatcher know user is not changing text
         sizeText.setText(String.format("%.1f", socks.size))
         sizeUnits.setSelection(socks.sizeUnits.ordinal)
+        userUpdate = true
 
         return mview
     }
@@ -51,7 +54,7 @@ class SockProjectFragment : ProjectFragment() {
         sizeText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 val str = sizeText.text.toString()
-                if (str.isNotEmpty()) {
+                if (userUpdate && str.isNotEmpty()) {
                     socks.size = java.lang.Double.parseDouble(str)
                     socks.calcYarnRequired()
                     updateResults()

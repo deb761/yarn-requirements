@@ -45,6 +45,7 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
     protected lateinit var ballsNeeded: TextView
     protected lateinit var partialBalls: Spinner
     protected lateinit var mview: View
+    protected var userUpdate: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -191,7 +192,7 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
         gaugeText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 val str = gaugeText.text.toString()
-                if (str.isNotEmpty()) {
+                if (userUpdate && str.isNotEmpty()) {
                     project.gauge = java.lang.Double.parseDouble(str)
                     project.calcYarnRequired()
                     updateResults()
@@ -243,11 +244,13 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     open fun updateResults() {
+        userUpdate = false
         val yarnNeeded = mview.findViewById(R.id.yarnNeededText) as TextView
         val ballsNeeded = mview.findViewById(R.id.ballsNeededText) as TextView
 
         yarnNeeded.text = String.format("%d", project.yarnNeeded)
         ballsNeeded.text = String.format("%.1f", project.ballsNeeded)
+        userUpdate = true
     }
 
     override fun onAttach(context: Context?) {

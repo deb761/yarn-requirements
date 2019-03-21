@@ -34,11 +34,13 @@ class DimensionProjectFragment : ProjectFragment() {
 
         initSizeUnitSpinner()
 
+        userUpdate = false // let the TextWatcher know we aren't processing user text
         lengthText.setText(String.format("%.1f", dimensionProject.length))
         lengthUnits.setSelection(dimensionProject.lengthUnits.ordinal)
 
         widthText.setText(String.format("%.1f", dimensionProject.width))
         widthUnits.setSelection(dimensionProject.widthUnits.ordinal)
+        userUpdate = true
 
         // Add dimension view to listview
         return mview
@@ -59,7 +61,7 @@ class DimensionProjectFragment : ProjectFragment() {
         widthText = EditText(context)
         widthText.setTextColor(lengthText.textColors)
         widthText.setTextSize(TypedValue.COMPLEX_UNIT_PX, lengthText.textSize)
-        //widthText.setEms(lengthText.getMaxEms());
+        widthText.setEms(lengthText.maxEms);
         widthUnits = Spinner(context)
         widthUnitsId = View.generateViewId()
         widthUnits.id = widthUnitsId
@@ -108,7 +110,7 @@ class DimensionProjectFragment : ProjectFragment() {
         lengthText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 val str = lengthText.text.toString()
-                if (str.isNotEmpty()) {
+                if (userUpdate && str.isNotEmpty()) {
                     dimensionProject.length = java.lang.Double.parseDouble(str)
                     dimensionProject.calcYarnRequired()
                     updateResults()
@@ -134,7 +136,7 @@ class DimensionProjectFragment : ProjectFragment() {
         widthText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 val str = widthText.text.toString()
-                if (str.isNotEmpty()) {
+                if (userUpdate && str.isNotEmpty()) {
                     dimensionProject.width = java.lang.Double.parseDouble(str)
                     dimensionProject.calcYarnRequired()
                     updateResults()

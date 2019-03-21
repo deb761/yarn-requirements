@@ -32,7 +32,9 @@ class SizeProjectFragment : ProjectFragment() {
 
         initSizeUnitSpinner()
 
+        userUpdate = false
         sizeText.setText(String.format("%.1f", sizeProject.size))
+        userUpdate = true
         sizeUnits.setSelection(sizeProject.sizeUnits.ordinal)
 
         // Add size view to listview
@@ -47,7 +49,6 @@ class SizeProjectFragment : ProjectFragment() {
 
     override fun updateResults() {
         super.updateResults()
-        sizeText.setText(String.format("%.1f", sizeProject.size))
     }
 
     // Add the text changed event for the size value
@@ -57,7 +58,7 @@ class SizeProjectFragment : ProjectFragment() {
         sizeText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 val str = sizeText.text.toString()
-                if (str.isNotEmpty()) {
+                if (userUpdate && str.isNotEmpty()) {
                     sizeProject.size = java.lang.Double.parseDouble(str)
                     sizeProject.calcYarnRequired()
                     updateResults()
@@ -76,7 +77,7 @@ class SizeProjectFragment : ProjectFragment() {
                 s: CharSequence, start: Int, before: Int,
                 count: Int
             ) {
-                //  Auto-generated method stub
+                // Auto-generated method stub
             }
         })
     }

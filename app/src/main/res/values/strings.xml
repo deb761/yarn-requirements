@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">YarnRequirements</string>
+    <string name="app_name">Knitting Calculator</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="yarn_requirements">Yarn Requirements</string>
+    <string name="yarn_requirements">Knitting Calculator</string>
     <string name="title_home">Home</string>
     <string name="title_weights">Weights</string>
     <string name="title_info">Info</string>

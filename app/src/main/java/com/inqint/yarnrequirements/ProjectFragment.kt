@@ -278,7 +278,10 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 project.ballSizeUnits = LongLengthUnits.fromInt(pos)
                 project.calcBallsNeeded()
             }
-            R.id.ballFractSpinner -> project.isPartialBalls = pos != 0
+            R.id.ballFractSpinner -> {
+                project.isPartialBalls = pos != 0
+                project.calcBallsNeeded()
+            }
         }
         updateResults()
     }

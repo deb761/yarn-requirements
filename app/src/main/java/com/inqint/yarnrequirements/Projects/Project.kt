@@ -109,7 +109,7 @@ abstract class Project(var name: String, var thumbImageID: Int, var imageID: Int
     // Calculate the number of balls needed, taking into account the selected units
     fun calcBallsNeeded() {
         if (yarnNeededUnits === ballSizeUnits) {
-            ballsNeeded = Math.ceil(yarnNeeded.toDouble() / ballSize.toDouble()).toInt().toDouble()
+            ballsNeeded = yarnNeeded.toDouble() / ballSize.toDouble()
         } else {
             val yarn = if (yarnNeededUnits === LongLengthUnits.meters)
                 yarnNeeded.toDouble()
@@ -120,6 +120,9 @@ abstract class Project(var name: String, var thumbImageID: Int, var imageID: Int
             else
                 ballSize.toDouble() * yards2meters
             ballsNeeded = yarn / ballMeters
+        }
+        if (!isPartialBalls) {
+            ballsNeeded = Math.ceil(ballsNeeded)
         }
     }
 

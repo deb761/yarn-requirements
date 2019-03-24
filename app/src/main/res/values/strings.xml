@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Knitting Calculator</string>
+    <string name="app_name">Knitting Yarn Calc</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -37,4 +37,6 @@
     <string name="yarn_needed">Yarn Needed:</string>
     <string name="icon8">Icon8</string>
     <string name="icons">Icons:</string>
+    <string name="location_reason">This permission allows advertising to be specific to your location</string>
+    <string name="permission_request_title">Permission required</string>
 </resources>

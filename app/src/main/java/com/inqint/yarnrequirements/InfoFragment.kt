@@ -3,12 +3,12 @@ package com.inqint.yarnrequirements
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 
 class InfoFragment : Fragment(), OnClickListener {
     companion object {
@@ -30,7 +30,7 @@ class InfoFragment : Fragment(), OnClickListener {
         // open the Icon8 web site
         val webpage: Uri = Uri.parse("http://www.icons8.com")
         val intent = Intent(Intent.ACTION_VIEW, webpage)
-        if (intent.resolveActivity(activity.packageManager) != null) {
+        if (intent.resolveActivity(activity?.packageManager!!) != null) {
             startActivity(intent)
         }
     }

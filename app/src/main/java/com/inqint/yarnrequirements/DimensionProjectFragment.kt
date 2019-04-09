@@ -96,7 +96,7 @@ class DimensionProjectFragment : ProjectFragment() {
         (ballSize.layoutParams as GridLayout.LayoutParams).rowSpec = ballRow
         (ballUnits.layoutParams as GridLayout.LayoutParams).rowSpec = ballRow
 
-        val numRow = GridLayout.spec(row++)
+        val numRow = GridLayout.spec(row)
         val numLabel = mview.findViewById(R.id.ballsNeededLabel) as TextView
         (numLabel.layoutParams as GridLayout.LayoutParams).rowSpec = ballRow
         (ballsNeeded.layoutParams as GridLayout.LayoutParams).rowSpec = numRow

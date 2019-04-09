@@ -1,16 +1,18 @@
 package com.inqint.yarnrequirements.Projects
 
 import android.content.SharedPreferences
+import com.inqint.yarnrequirements.SockProjectFragment
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
+import kotlin.reflect.KClass
 
 /**
  * Created by deb on 4/27/16.
  * This class calculates the yarn needed for socks of US and Euro shoe sizes.
  */
-class Socks(name: String, thumbImageID: Int, imageID: Int, fragmentClass: Class<*>) :
+class Socks(name: String, thumbImageID: Int, imageID: Int, fragmentClass: KClass<SockProjectFragment>) :
     Project(name, thumbImageID, imageID, fragmentClass) {
     // The shoe size
     var size: Double = 0.toDouble()

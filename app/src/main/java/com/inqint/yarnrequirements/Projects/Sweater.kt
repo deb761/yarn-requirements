@@ -1,9 +1,12 @@
 package com.inqint.yarnrequirements.Projects
 
+import com.inqint.yarnrequirements.SizeProjectFragment
+import kotlin.reflect.KClass
+
 /**
  * Created by deb on 4/25/16.
  */
-open class Sweater(name: String, thumbImageID: Int, imageID: Int, fragmentClass: Class<*>) :
+open class Sweater(name: String, thumbImageID: Int, imageID: Int, fragmentClass: KClass<SizeProjectFragment>) :
     SizeProject(name, thumbImageID, imageID, fragmentClass) {
 
     override fun calcYarnRequired() {

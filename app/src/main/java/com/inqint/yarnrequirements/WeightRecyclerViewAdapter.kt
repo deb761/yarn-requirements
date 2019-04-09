@@ -1,10 +1,10 @@
 package com.inqint.yarnrequirements
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.inqint.yarnrequirements.weights.WeightContent.WeightItem
 import java.util.*
 
@@ -66,13 +66,13 @@ class WeightRecyclerViewAdapter(private val mValues: List<WeightItem>) :
         }
 
         val length = holder.mItem!!.length.toDouble()
-        val ball = holder.mItem!!.weight.toDouble()
+        val weight = holder.mItem!!.weight.toDouble()
 
         holder.mWindingsView.text = String.format("%1\$s %2\$s", wpi, res.getString(R.string.wpi))
         holder.mDensityView.text = String.format(
             "%1$.0f%2\$s %3\$s %4\$s%5\$s %6\$s", length,
             res.getString(R.string.meter_abbr), res.getString(R.string.per),
-            holder.mItem!!.weight, res.getString(R.string.gram_abbr),
+            weight, res.getString(R.string.gram_abbr),
             res.getString(R.string.yarn_ball)
         )
     }

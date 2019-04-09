@@ -1,21 +1,18 @@
 package com.inqint.yarnrequirements
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.inqint.yarnrequirements.ProjectListFragment.OnListFragmentInteractionListener
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import com.inqint.yarnrequirements.Projects.DimensionProject
 import com.inqint.yarnrequirements.Projects.Project
+import com.inqint.yarnrequirements.Projects.SizeProject
 
-/**
- * [RecyclerView.Adapter] that can display a [Project] and makes a call to the
- * specified [OnListFragmentInteractionListener].
- */
 class ProjectRecyclerViewAdapter(
-    private val mValues: List<Project>,
-    private val mListener: OnListFragmentInteractionListener?
+    private val mValues: List<Project>
 ) : RecyclerView.Adapter<ProjectRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +27,19 @@ class ProjectRecyclerViewAdapter(
         holder.imageView.setImageResource(holder.mItem!!.thumbImageID)
 
         holder.mView.setOnClickListener {
-            mListener?.onListFragmentInteraction(holder.mItem!!)
+            val project = mValues[position]
+            if (project is DimensionProject) {
+                val projectFragment = ProjectListFragmentDirections.actionListToDimensionProjectFragment(project)
+                it.findNavController().navigate(projectFragment)
+            }
+            else if (project is SizeProject) {
+                val projectFragment = ProjectListFragmentDirections.actionListToSizeProject(project)
+                it.findNavController().navigate(projectFragment)
+            }
+            else {
+                val projectFragment = ProjectListFragmentDirections.actionListToSockProjectFragment(project)
+                it.findNavController().navigate(projectFragment)
+            }
         }
     }
 

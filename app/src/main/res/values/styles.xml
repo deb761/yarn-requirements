@@ -26,7 +26,7 @@
     </style>
 
     <style name="headerStyle">
-        <item name="android:background">@color/header_background</item>
+        <item name="background">@color/header_background</item>
         <item name="android:textSize">@dimen/header_font_size</item>
         <item name="android:textColor">@color/caption_color</item>
     </style>

@@ -2,21 +2,22 @@ package com.inqint.yarnrequirements
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import android.os.Parcelable
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import com.inqint.yarnrequirements.Projects.GaugeUnits
 import com.inqint.yarnrequirements.Projects.LongLengthUnits
 import com.inqint.yarnrequirements.Projects.Project
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import java.io.Serializable
 import java.nio.charset.Charset
 
 
@@ -30,8 +31,8 @@ import java.nio.charset.Charset
  */
 open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private var mListener: OnFragmentInteractionListener? = null
-    public lateinit var project: Project
+    //private var listener: OnFragmentInteractionListener? = null
+    lateinit var project: Project
     protected lateinit var gridLayout: GridLayout
     protected lateinit var preferences: SharedPreferences
     private lateinit var name: TextView
@@ -50,7 +51,21 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            project = ProjectContent.PROJECT_MAP.get(key = savedInstanceState!!.getString(ARG_PROJECT)!!)!!
+            val bundle = arguments!!
+            if (bundle.containsKey("project")) {
+                if (Parcelable::class.java.isAssignableFrom(Project::class.java) ||
+                    Serializable::class.java.isAssignableFrom(Project::class.java)) {
+                    project = bundle.get("project") as Project
+                } else {
+                    throw UnsupportedOperationException(Project::class.java.name +
+                            " must implement Parcelable or Serializable or must be an Enum.")
+                }
+                if (project == null) {
+                    throw IllegalArgumentException("Argument \"project\" is marked as non-null but was passed a null value.")
+                }
+            } else {
+                throw IllegalArgumentException("Required argument \"project\" is missing and does not have an android:defaultValue")
+            }
         }
     }
 
@@ -105,7 +120,7 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     // Identify the various views
-    open protected fun initValues() {
+    protected open fun initValues() {
         name = mview.findViewById<View>(R.id.name) as TextView
         image = mview.findViewById<View>(R.id.image) as ImageView
         gridLayout = mview.findViewById(R.id.gridLayout) as GridLayout
@@ -149,7 +164,7 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun initYarnUnitSpinner() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         val adapter = ArrayAdapter.createFromResource(
-            context,
+            context!!,
             R.array.long_length_units_array, R.layout.spinner
         )
         // Specify the layout to use when the list of choices appears
@@ -188,7 +203,7 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
         partialBalls.onItemSelectedListener = this
     }
 
-    open protected fun initTextChangedEvents() {
+    protected open fun initTextChangedEvents() {
         gaugeText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 val str = gaugeText.text.toString()
@@ -253,20 +268,6 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
         userUpdate = true
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            mListener = context
-        } else {
-            throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        mListener = null
-    }
-
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
         when (parent.id) {
             R.id.gaugeUnitsSpinner -> {
@@ -288,22 +289,8 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onNothingSelected(parent: AdapterView<*>) {}
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
-     */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
-    }
-
     companion object {
-        private val ARG_PROJECT = "project"
+        private const val ARG_PROJECT = "project"
 
         /**
          * Use this factory method to create a new instance of
@@ -313,12 +300,12 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
          * @return A new instance of fragment ProjectFragment.
          */
         fun newInstance(project: Project): ProjectFragment {
-            val fragment = ProjectFragment()
             val args = Bundle()
-            args.putString(ARG_PROJECT, project.name)
+            args.putSerializable(ARG_PROJECT, project)
+            val ctor = project.fragment.constructors.singleOrNull()!! as () -> ProjectFragment
+            val fragment = ctor()
             fragment.arguments = args
-            fragment.project = project
             return fragment
         }
     }
-}// Required empty public constructor
+}

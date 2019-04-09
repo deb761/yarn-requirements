@@ -1,15 +1,18 @@
 package com.inqint.yarnrequirements.Projects
 
 import android.content.SharedPreferences
+import com.inqint.yarnrequirements.ProjectFragment
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.Serializable
+import kotlin.reflect.KClass
 
 
 /* The basic definition of a knitting project.  This class is extended for each project type. */
-abstract class Project(var name: String, var thumbImageID: Int, var imageID: Int) {
+abstract class Project(var name: String, var thumbImageID: Int, var imageID: Int) : Serializable {
     var gauge: Double = 0.toDouble()
     var gaugeUnits: GaugeUnits
-    lateinit var fragment: Class<*>
+    lateinit var fragment: KClass<ProjectFragment>
         protected set
     var yarnNeeded: Int = 0
         protected set
@@ -31,7 +34,7 @@ abstract class Project(var name: String, var thumbImageID: Int, var imageID: Int
         ballsNeeded = 0.0
     }
 
-    constructor(name: String, thumbImageID: Int, imageID: Int, fragment: Class<*>) : this(
+    constructor(name: String, thumbImageID: Int, imageID: Int, fragment: KClass<*>) : this(
         "project",
         0,
         0
@@ -39,7 +42,7 @@ abstract class Project(var name: String, var thumbImageID: Int, var imageID: Int
         this.name = name
         this.thumbImageID = thumbImageID
         this.imageID = imageID
-        this.fragment = fragment
+        this.fragment = fragment as KClass<ProjectFragment>
     }
 
     abstract fun calcYarnRequired()

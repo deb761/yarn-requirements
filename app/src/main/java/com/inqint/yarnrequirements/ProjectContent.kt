@@ -1,20 +1,7 @@
 package com.inqint.yarnrequirements
 
-import com.inqint.yarnrequirements.Projects.Blanket
-import com.inqint.yarnrequirements.Projects.Gloves
-import com.inqint.yarnrequirements.Projects.Mittens
-import com.inqint.yarnrequirements.Projects.Project
-import com.inqint.yarnrequirements.Projects.Scarf
-import com.inqint.yarnrequirements.Projects.Socks
-import com.inqint.yarnrequirements.Projects.Sweater
-import com.inqint.yarnrequirements.Projects.Tam
-import com.inqint.yarnrequirements.Projects.Toque
-import com.inqint.yarnrequirements.Projects.Vest
-
-import java.util.ArrayList
-import java.util.HashMap
-
-import com.inqint.yarnrequirements.R.string.sweater
+import com.inqint.yarnrequirements.Projects.*
+import java.util.*
 
 /**
  * Helper class for providing sample needles for user interfaces created by
@@ -38,20 +25,20 @@ object ProjectContent {
 
     init {
         // Add projects
-        addProject(Mittens("Mittens", R.drawable.mittens_thumb, R.drawable.mittens, SizeProjectFragment::class.java))
-        addProject(Gloves("Gloves", R.drawable.gloves_thumb, R.drawable.gloves, SizeProjectFragment::class.java))
-        addProject(Socks("Socks", R.drawable.socks_thumb, R.drawable.socks, SockProjectFragment::class.java))
-        addProject(Tam("Tam", R.drawable.tam_thumb, R.drawable.tam, SizeProjectFragment::class.java))
-        addProject(Scarf("Scarf", R.drawable.scarf_thumb, R.drawable.scarf, DimensionProjectFragment::class.java))
-        addProject(Toque("Toque", R.drawable.toque_thumb, R.drawable.toque, SizeProjectFragment::class.java))
-        addProject(Sweater("Sweater", R.drawable.sweater_thumb, R.drawable.sweater, SizeProjectFragment::class.java))
-        addProject(Vest("Vest", R.drawable.vest_thumb, R.drawable.vest, SizeProjectFragment::class.java))
+        addProject(Mittens("Mittens", R.drawable.mittens_thumb, R.drawable.mittens, SizeProjectFragment::class))
+        addProject(Gloves("Gloves", R.drawable.gloves_thumb, R.drawable.gloves, SizeProjectFragment::class))
+        addProject(Socks("Socks", R.drawable.socks_thumb, R.drawable.socks, SockProjectFragment::class))
+        addProject(Tam("Tam", R.drawable.tam_thumb, R.drawable.tam, SizeProjectFragment::class))
+        addProject(Scarf("Scarf", R.drawable.scarf_thumb, R.drawable.scarf, DimensionProjectFragment::class))
+        addProject(Toque("Toque", R.drawable.toque_thumb, R.drawable.toque, SizeProjectFragment::class))
+        addProject(Sweater("Sweater", R.drawable.sweater_thumb, R.drawable.sweater, SizeProjectFragment::class))
+        addProject(Vest("Vest", R.drawable.vest_thumb, R.drawable.vest, SizeProjectFragment::class))
         addProject(
             Blanket(
                 "Blanket",
                 R.drawable.blanket_thumb,
                 R.drawable.blanket,
-                DimensionProjectFragment::class.java
+                DimensionProjectFragment::class
             )
         )
     }

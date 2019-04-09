@@ -1,9 +1,12 @@
 package com.inqint.yarnrequirements.Projects
 
+import com.inqint.yarnrequirements.SizeProjectFragment
+import kotlin.reflect.KClass
+
 /**
  * Created by deb on 4/27/16.
  */
-open class Mittens(name: String, thumbImageID: Int, imageID: Int, fragmentClass: Class<*>) :
+open class Mittens(name: String, thumbImageID: Int, imageID: Int, fragmentClass: KClass<SizeProjectFragment>) :
     SizeProject(name, thumbImageID, imageID, fragmentClass) {
     // Estimate the hand size and calculate yarn for two mittens
     override fun calcYarnRequired() {

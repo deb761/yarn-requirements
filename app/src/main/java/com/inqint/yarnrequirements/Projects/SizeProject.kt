@@ -1,8 +1,10 @@
 package com.inqint.yarnrequirements.Projects
 
 import android.content.SharedPreferences
+import com.inqint.yarnrequirements.SizeProjectFragment
 import org.json.JSONException
 import org.json.JSONObject
+import kotlin.reflect.KClass
 
 /**
  * Created by deb on 11/25/16.
@@ -10,7 +12,7 @@ import org.json.JSONObject
  * Handle the basics for all the projects that take just a size to estimate yarn
  */
 
-abstract class SizeProject(name: String, thumbImageID: Int, imageID: Int, fragment: Class<*>) :
+abstract class SizeProject(name: String, thumbImageID: Int, imageID: Int, fragment: KClass<SizeProjectFragment>) :
     Project(name, thumbImageID, imageID, fragment) {
     var size: Double = 0.toDouble()
 

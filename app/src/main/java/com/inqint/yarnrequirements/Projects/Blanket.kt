@@ -1,9 +1,12 @@
 package com.inqint.yarnrequirements.Projects
 
+import com.inqint.yarnrequirements.DimensionProjectFragment
+import kotlin.reflect.KClass
+
 /**
  * Created by deb on 4/27/16.
  */
-class Blanket(name: String, thumbImageID: Int, imageID: Int, fragmentClass: Class<*>) :
+class Blanket(name: String, thumbImageID: Int, imageID: Int, fragmentClass: KClass<DimensionProjectFragment>) :
     Scarf(name, thumbImageID, imageID, fragmentClass) {
 
     override fun calcYarnRequired() {

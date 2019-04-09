@@ -1,9 +1,12 @@
 package com.inqint.yarnrequirements.Projects
 
+import com.inqint.yarnrequirements.DimensionProjectFragment
+import kotlin.reflect.KClass
+
 /**
  * Created by deb on 4/27/16.
  */
-open class Scarf(name: String, thumbImageID: Int, imageID: Int, fragmentClass: Class<*>) :
+open class Scarf(name: String, thumbImageID: Int, imageID: Int, fragmentClass: KClass<DimensionProjectFragment>) :
     DimensionProject(name, thumbImageID, imageID, fragmentClass) {
 
     /* Make sure units are in SI units, then calculate based on the length & width */

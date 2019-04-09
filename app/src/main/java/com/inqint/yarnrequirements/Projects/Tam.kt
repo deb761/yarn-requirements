@@ -1,5 +1,8 @@
 package com.inqint.yarnrequirements.Projects
 
+import com.inqint.yarnrequirements.SizeProjectFragment
+import kotlin.reflect.KClass
+
 /**
  * Created by deb on 4/27/16.
  * Tams are also hats, so base them off of Toques.  Toques are this shape:
@@ -8,7 +11,7 @@ package com.inqint.yarnrequirements.Projects
  *  |    |
  *   -__-
  */
-class Tam(name: String, thumbImageID: Int, imageID: Int, fragmentClass: Class<*>) :
+class Tam(name: String, thumbImageID: Int, imageID: Int, fragmentClass: KClass<SizeProjectFragment>) :
     SizeProject(name, thumbImageID, imageID, fragmentClass) {
 
     // Calculate the yarn required for a tam

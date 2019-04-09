@@ -1,14 +1,13 @@
 package com.inqint.yarnrequirements
 
-import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.inqint.yarnrequirements.Projects.Project
 
 /**
@@ -25,7 +24,6 @@ import com.inqint.yarnrequirements.Projects.Project
 class ProjectListFragment : Fragment() {
 
     private val mColumnCount = 3
-    private var mListener: OnListFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,23 +43,9 @@ class ProjectListFragment : Fragment() {
             } else {
                 view.layoutManager = GridLayoutManager(context, mColumnCount)
             }
-            view.adapter = ProjectRecyclerViewAdapter(ProjectContent.PROJECTS, mListener)
+            view.adapter = ProjectRecyclerViewAdapter(ProjectContent.PROJECTS)
         }
         return view
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        if (context is OnListFragmentInteractionListener) {
-            mListener = context
-        } else {
-           throw RuntimeException(context!!.toString() + " must implement OnListFragmentInteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        mListener = null
     }
 
     /**

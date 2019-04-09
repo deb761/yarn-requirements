@@ -1,15 +1,15 @@
 package com.inqint.yarnrequirements.free
 
 import android.Manifest
-import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.amazon.device.ads.*
 import com.inqint.yarnrequirements.BuildConfig
 import com.inqint.yarnrequirements.MainActivity
@@ -110,7 +110,7 @@ open class FreeActivity : MainActivity() {
                 builder.setMessage(getString(R.string.location_reason))
                     .setTitle(getString(R.string.permission_request_title))
 
-                builder.setPositiveButton("OK") { dialog, which ->
+                builder.setPositiveButton("OK") { _, which ->
                     // request permissions
                     ActivityCompat.requestPermissions(
                         this,
@@ -195,7 +195,6 @@ open class FreeActivity : MainActivity() {
          */
         override fun onAdFailedToLoad(ad: Ad?, error: AdError) {
             Log.w(LOG_TAG, "Ad failed to load. Code: " + error.code + ", Message: " + error.message)
-            // TODO retry loading the ad after a second or so
         }
 
         /**

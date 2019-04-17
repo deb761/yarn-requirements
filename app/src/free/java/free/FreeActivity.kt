@@ -1,216 +1,207 @@
 package com.inqint.yarnrequirements.free
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
+import android.os.PersistableBundle
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.amazon.device.ads.*
-import com.inqint.yarnrequirements.BuildConfig
+import androidx.navigation.findNavController
+import com.google.ads.consent.*
+import com.google.ads.mediation.admob.AdMobAdapter
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.inqint.yarnrequirements.MainActivity
 import com.inqint.yarnrequirements.R
-import free.LOG_TAG
-import free.amazonAppKey
+import java.net.MalformedURLException
+import java.net.URL
 import java.util.*
-import java.util.concurrent.TimeUnit
-import kotlin.concurrent.fixedRateTimer
+
 
 
 open class FreeActivity : MainActivity() {
 
-    protected lateinit var adView:AdLayout
-    protected var adOptions:AdTargetingOptions = AdTargetingOptions()
+    private var showPersonlAds: Boolean = false
+    lateinit var form: ConsentForm
+    lateinit var adView : AdView
     protected lateinit var adTimer: Timer
     protected lateinit var reqTimer: Timer
+    protected lateinit var adProviders: List<AdProvider>
+    protected val context = this
+    private val TAG = "MainActivity"
+    private val SHOW_PERSONAL_ADS_KEY = "show.personal.ads.key"
 
-    private val adHandler: Handler = object : Handler(Looper.getMainLooper()) {
-        /*
-         * handleMessage() defines the operations to perform when
-         * the Handler receives a new Message to process.
-         */
-        override fun handleMessage(inputMessage: Message) {
-            loadAd()
-            showAd()
+    protected override val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        val navController = findNavController(R.id.fragment_container)
+        when (item.itemId) {
+            R.id.navigation_home -> {
+                navController.navigate(R.id.action_global_list)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_weights -> {
+                navController.navigate(R.id.action_global_weights)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_info -> {
+                navController.navigate(R.id.action_global_info)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_privacy -> {
+                navController.navigate(R.id.action_global_privacy)
+                return@OnNavigationItemSelectedListener true
+            }
         }
+        false
     }
 
-    private val reqHandler: Handler = object : Handler(Looper.getMainLooper()) {
-        /*
-         * handleMessage() defines the operations to perform when
-         * the Handler receives a new Message to process.
-         */
-        override fun handleMessage(inputMessage: Message) {
-            checkLocationPermission()
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        AdRegistration.setAppKey(amazonAppKey);
-        if(BuildConfig.BUILD_TYPE.equals("debug")) {
-            AdRegistration.enableTesting(true);
-            AdRegistration.enableLogging(true);
-        }
+        if (savedInstanceState != null)
+            showPersonlAds = savedInstanceState.getBoolean(SHOW_PERSONAL_ADS_KEY)
 
-        this.adView = findViewById<AdLayout>(R.id.adview)
-        this.adView.setListener(AdListener())
+        // Admob
+        // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
+        MobileAds.initialize(this, getString(R.string.admob_id))
 
-
-        // Create a timer that will load a new add every minute after checking permissions
-        adTimer = fixedRateTimer(name = "ad-timer",
-            initialDelay = 0, period = TimeUnit.MINUTES.toMillis(1)) {
-            val message = adHandler.obtainMessage()
-            message.sendToTarget()
-        }
-
-        // Create a timer that will check permissions
-        reqTimer = fixedRateTimer(name = "permission-timer",
-            initialDelay = 0, period = TimeUnit.DAYS.toMillis(1)) {
-            val message = reqHandler.obtainMessage()
-            message.sendToTarget()
-        }
+        adView = findViewById(R.id.adView)
+        checkAdConsent()
     }
 
-    // Cancel the timer when the activity exits
-    override fun onDestroy() {
+    private fun checkAdConsent() {
+        val consentInformation = ConsentInformation.getInstance(this)
+        consentInformation.debugGeography = DebugGeography.DEBUG_GEOGRAPHY_EEA;
+        val publisherIds = arrayOf("pub-3658144280100378")
+        consentInformation.requestConsentInfoUpdate(publisherIds, object : ConsentInfoUpdateListener {
+            override fun onConsentInfoUpdated(consentStatus: ConsentStatus) {
+                // User's consent status successfully updated.
+                adProviders = ConsentInformation.getInstance(context).adProviders
+                when (consentStatus) {
+                    ConsentStatus.PERSONALIZED -> loadAds(true)
+                    ConsentStatus.NON_PERSONALIZED -> loadAds(false)
+                    ConsentStatus.UNKNOWN ->
+                    {
+                        if (consentInformation.isRequestLocationInEeaOrUnknown) {
+                            requestConsent()
+                        }
+                    }
+                }
+                Log.d(TAG, "onConsentInfoUpdated, Consent Status = ${consentStatus.name}")
+            }
+
+            override fun onFailedToUpdateConsentInfo(errorDescription: String) {
+                // User's consent status failed to update.
+            }
+        })
+    }
+
+    private fun requestConsent() {
+        var privacyUrl: URL? = null
+        try {
+            // TODO: Replace with your app's privacy policy URL.
+            privacyUrl = URL("https://deb761.github.io")
+        } catch (e: MalformedURLException) {
+            e.printStackTrace()
+            // Handle error.
+        }
+
+        form = ConsentForm.Builder(this, privacyUrl)
+            .withListener(object : ConsentFormListener() {
+                override fun onConsentFormLoaded() {
+                    // Consent form loaded successfully.
+                    super.onConsentFormLoaded()
+                    form.show()
+                }
+
+                override fun onConsentFormOpened() {
+                    // Consent form was displayed.
+                }
+
+                override fun onConsentFormClosed(
+                    consentStatus: ConsentStatus?, userPrefersAdFree: Boolean?
+                ) {
+                    super.onConsentFormClosed(consentStatus, userPrefersAdFree)
+                    // Consent form was closed.
+                    ConsentInformation.getInstance(context).consentStatus = consentStatus
+
+                    if (userPrefersAdFree != null && userPrefersAdFree) {
+                        // take user to play store to purchase paid version
+
+                    }
+
+                    when (consentStatus) {
+                        ConsentStatus.PERSONALIZED -> loadAds(true)
+                        ConsentStatus.NON_PERSONALIZED -> loadAds(false)
+                        ConsentStatus.UNKNOWN -> loadAds(true)
+                    }
+
+                }
+
+                override fun onConsentFormError(errorDescription: String?) {
+                    // Consent form error.
+                    println(errorDescription)
+                }
+            })
+            .withPersonalizedAdsOption()
+            .withNonPersonalizedAdsOption()
+            .withAdFreeOption()
+            .build()
+
+        form.load()
+    }
+
+    private fun loadAds(showPersonlAds: Boolean) {
+        this.showPersonlAds = showPersonlAds
+        val build: AdRequest
+        if (!this.showPersonlAds)
+            build = AdRequest.Builder()
+                .addNetworkExtrasBundle(AdMobAdapter::class.java, getNonPersonalizedAdsBundle())
+                .build()
+        else
+            build = AdRequest.Builder().build()
+
+        adView.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                adView.loadAd(build)
+                Log.d(TAG, "onAdClosed Banner Ad")
+            }
+            override fun onAdFailedToLoad(p0: Int) {
+                super.onAdFailedToLoad(p0)
+                adView.loadAd(build)
+                Log.d(TAG, "onAdFailedToLoad Banner Ad")
+            }
+        }
+        adView.loadAd(build)
+    }
+
+    private fun getNonPersonalizedAdsBundle(): Bundle {
+        val extra = Bundle()
+        extra.putString("npa", "1")
+        return extra
+    }
+
+    // Called when leaving the activity
+    public override fun onPause() {
+        adView.pause()
+        super.onPause()
+    }
+
+    // Called when returning to the activity
+    public override fun onResume() {
+        super.onResume()
+        adView.resume()
+    }
+
+    // Called before the activity is destroyed
+    public override fun onDestroy() {
+        adView.destroy()
         super.onDestroy()
-        adTimer.cancel()
         reqTimer.cancel()
+        adTimer.cancel()
     }
-
-    private val MY_PERMISSIONS_REQUEST_ACCESS_LOCATION: Int = 7335
-    private val LOCATION_PERMISSIONS = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
-
-    fun checkLocationPermission() {
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED) {
-
-            // Permission is not granted
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION) ||
-                ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                val builder = AlertDialog.Builder(this@FreeActivity)
-
-                builder.setMessage(getString(R.string.location_reason))
-                    .setTitle(getString(R.string.permission_request_title))
-
-                builder.setPositiveButton("OK") { _, which ->
-                    // request permissions
-                    ActivityCompat.requestPermissions(
-                        this,
-                        LOCATION_PERMISSIONS,
-                        MY_PERMISSIONS_REQUEST_ACCESS_LOCATION
-                    )
-                }
-
-                // Finally, make the alert dialog using builder
-                val dialog: AlertDialog = builder.create()
-
-                // Display the alert dialog on app interface
-                dialog.show()
-            }
-            else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(this,
-                    LOCATION_PERMISSIONS,
-                    MY_PERMISSIONS_REQUEST_ACCESS_LOCATION)
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-            }
-        } else {
-            // Permission has already been granted
-            adOptions.enableGeoLocation(true)
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
-        when (requestCode) {
-            MY_PERMISSIONS_REQUEST_ACCESS_LOCATION -> {
-                // If request is cancelled, the result arrays are empty.
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    adOptions.enableGeoLocation(true)
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                    adOptions.enableGeoLocation(false)
-                }
-                return
-            }
-
-            // Add other 'when' lines to check for other
-            // permissions this app might request.
-            else -> {
-                // Ignore all other requests.
-            }
-        }
-    }
-    /**
-     * Load a new ad.
-     */
-    fun loadAd() {
-        // Load an ad
-        this.adView.loadAd(adOptions)
-    }
-
-    fun showAd() {
-        if (!this.adView.showAd()) {
-            Log.w(LOG_TAG, "The ad was not shown. Check the logcat for more information.")
-        }
-    }
-
-    /**
-     * This class is for an event listener that tracks ad lifecycle events.
-     * It extends DefaultAdListener, so you can override only the methods that you need.
-     */
-    class AdListener : DefaultAdListener() {
-        /**
-         * This event is called once an ad loads successfully.
-         */
-        override fun onAdLoaded(ad: Ad?, adProperties: AdProperties?) {
-            Log.i(LOG_TAG, adProperties!!.adType.toString() + " ad loaded successfully.")
-
-        }
-
-        /**
-         * This event is called if an ad fails to load.
-         */
-        override fun onAdFailedToLoad(ad: Ad?, error: AdError) {
-            Log.w(LOG_TAG, "Ad failed to load. Code: " + error.code + ", Message: " + error.message)
-        }
-
-        /**
-         * This event is called after a rich media ad expands.
-         */
-        override fun onAdExpanded(ad: Ad?) {
-            Log.i(LOG_TAG, "Ad expanded.")
-            // You may want to pause your activity here.
-        }
-
-        /**
-         * This event is called after a rich media ad has collapsed from an expanded state.
-         */
-        override fun onAdCollapsed(ad: Ad?) {
-            Log.i(LOG_TAG, "Ad collapsed.")
-            // Resume your activity here, if it was paused in onAdExpanded.
-        }
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        outState?.putBoolean(SHOW_PERSONAL_ADS_KEY, showPersonlAds)
     }
 }

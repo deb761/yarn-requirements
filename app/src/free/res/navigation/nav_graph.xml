@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/list">
+
+    <fragment
+        android:id="@+id/list"
+        android:name="com.inqint.yarnrequirements.ProjectListFragment"
+        android:label="ProjectList"
+        tools:layout="@layout/fragment_project_list">
+        <action
+            android:id="@+id/action_list_to_size_project"
+            app:destination="@id/sizeProjectFragment" />
+        <action
+            android:id="@+id/action_list_to_sockProjectFragment"
+            app:destination="@id/sockProjectFragment" />
+        <action
+            android:id="@+id/action_list_to_dimensionProjectFragment"
+            app:destination="@id/dimensionProjectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sizeProjectFragment"
+        android:name="com.inqint.yarnrequirements.SizeProjectFragment"
+        android:label="size">
+        <argument
+            android:name="project"
+            app:argType="com.inqint.yarnrequirements.Projects.Project" />
+    </fragment>
+    <fragment
+        android:id="@+id/weights"
+        android:name="com.inqint.yarnrequirements.WeightFragment"
+        android:label="Weight"
+        tools:layout="@layout/fragment_weight_list" />
+    <fragment
+        android:id="@+id/info"
+        android:name="com.inqint.yarnrequirements.InfoFragment"
+        tools:layout="@layout/fragment_info" />
+    <fragment
+        android:id="@+id/privacy"
+        android:name="com.inqint.yarnrequirements.free.PrivacyFragment" />
+    <action android:id="@+id/action_global_list"
+        app:destination="@id/list"
+        app:popUpToInclusive="true"/>
+    <action android:id="@+id/action_global_weights"
+        app:destination="@id/weights"
+        app:popUpToInclusive="true" />
+    <action android:id="@+id/action_global_info"
+        app:destination="@id/info"
+        app:popUpToInclusive="true" />
+    <fragment
+        android:id="@+id/dimensionProjectFragment"
+        android:name="com.inqint.yarnrequirements.DimensionProjectFragment"
+        android:label="DimensionProjectFragment">
+        <argument
+            android:name="project"
+            app:argType="com.inqint.yarnrequirements.Projects.Project" />
+        />
+    </fragment>
+    <fragment
+        android:id="@+id/sockProjectFragment"
+        android:name="com.inqint.yarnrequirements.SockProjectFragment"
+        android:label="SockProjectFragment">
+        <argument
+            android:name="project"
+            app:argType="com.inqint.yarnrequirements.Projects.Project" />
+        />
+    </fragment>
+    <action
+        android:id="@+id/action_global_privacy"
+        app:destination="@+id/privacy" />
+</navigation>

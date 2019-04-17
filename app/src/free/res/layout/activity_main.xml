@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:Amazon="http://schemas.android.com/apk/lib/com.amazon.device.ads"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
@@ -15,7 +14,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/adview">
+        app:layout_constraintBottom_toTopOf="@id/navigation">
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -27,12 +26,6 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.amazon.device.ads.AdLayout
-        android:id="@+id/adview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"/>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"
@@ -40,9 +33,21 @@
         android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
         android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/adView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation"/>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/admob_id"
+        android:paddingTop="@dimen/weight_padding"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class InfoFragment : Fragment(), OnClickListener {
@@ -20,7 +20,7 @@ class InfoFragment : Fragment(), OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var mview = inflater.inflate(R.layout.fragment_info, container, false)
-        val button: Button = mview.findViewById(R.id.icon8Link)
+        val button: TextView = mview.findViewById(R.id.icon8Link)
         button.setOnClickListener(this)
         return mview
     }

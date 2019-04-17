@@ -14,7 +14,7 @@ open class MainActivity() : AppCompatActivity() {
 
     private var phoneDevice = true // used to force portrait mode
 
-    protected val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    protected open val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         val navController = findNavController(R.id.fragment_container)
         when (item.itemId) {
             R.id.navigation_home -> {

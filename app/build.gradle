@@ -12,16 +12,19 @@ android {
         applicationId "com.inqint.yarnrequirements"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 5
+        versionCode 6
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -48,12 +51,17 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0-beta01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.vectordrawable:vectordrawable:1.0.0-beta01'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
-    freeImplementation 'com.google.android.gms:play-services-ads:17.1.3'
     // Pull and compile the latest release of the Amazon Mobile Ads SDK
     freeImplementation 'com.amazon.android:mobile-ads:+'
+    // Google consent-library
+    freeImplementation 'com.google.android.ads.consent:consent-library:1.0.6'
+    // Google AdMob
+    freeImplementation 'com.google.android.gms:play-services-ads:17.2.0'
     def nav_version = "2.1.0-alpha02"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"

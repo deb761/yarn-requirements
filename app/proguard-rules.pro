@@ -53,3 +53,9 @@
 -keepnames class * implements android.os.Parcelable {
    public static final ** CREATOR;
 }
+
+-keep public class com.inqint.yarnrequirements.Projects.**{
+    public *;
+}
+
+-keepclassmembernames class * extends com.inqint.yarnrequirements.Project

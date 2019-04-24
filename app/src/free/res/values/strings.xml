@@ -5,6 +5,6 @@
 
     <string name="privacy_summary">Your privacy is important to us.  This app is provided free of charge and uses ads to support it.</string>
     <string name="reason">While the Knitting Yarn Calculator itself does not use any data from you, the advertising service we use does.</string>
-    <string name="opt_out">We use targeted advertising to provide more appropriate ads for you. You may opt out of target ads. To do this, open the \'Google Settings app\' from your app drawer, tap on \'Ads\', and select \'Opt-out of Interest-based ads\' (http://developer.android.com/google/play-services/id.html) Please note that this will block your phone from receiving tailored ad recommendations across your device.</string>
+    <string name="opt_out">We use targeted advertising to provide more appropriate ads for you. You may opt out of target ads. To do this, open the \'Google Settings app\' from your app drawer, tap on \'Google > Services > Ads\', and select \'Opt-out of Interest-based ads\' (http://developer.android.com/google/play-services/id.html) Please note that this will block your phone from receiving tailored ad recommendations across your device.</string>
     <string name="view_full_privacy">You can view the full privacy statement at deb761.github.io/documentation/privacy_policy</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.inqint.yarnrequirements.free
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
@@ -99,7 +101,6 @@ open class FreeActivity : MainActivity() {
     private fun requestConsent() {
         var privacyUrl: URL? = null
         try {
-            // TODO: Replace with your app's privacy policy URL.
             privacyUrl = URL("https://deb761.github.io")
         } catch (e: MalformedURLException) {
             e.printStackTrace()
@@ -127,6 +128,12 @@ open class FreeActivity : MainActivity() {
 
                     if (userPrefersAdFree != null && userPrefersAdFree) {
                         // take user to play store to purchase paid version
+                        val intent = Intent(Intent.ACTION_VIEW).apply {
+                            data = Uri.parse(
+                                "https://play.google.com/store/apps/details?id=com.inqint.yarnrequirements.full")
+                            setPackage("com.android.vending")
+                        }
+                        startActivity(intent)
 
                     }
 

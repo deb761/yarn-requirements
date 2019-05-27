@@ -1,7 +1,8 @@
 package com.inqint.yarnrequirements.Projects
+import java.io.Serializable
 
 /* Enumeration for the gauge units: stitches per inch, 4 inches, or 10 cm */
-enum class GaugeUnits {
+enum class GaugeUnits: Serializable {
     stsPerInch, stsPer4inch, stsPer10cm;
 
 

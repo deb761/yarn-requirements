@@ -112,6 +112,10 @@ class DimensionProjectFragment : ProjectFragment() {
                 val str = lengthText.text.toString()
                 if (userUpdate && str.isNotEmpty()) {
                     dimensionProject.length = java.lang.Double.parseDouble(str)
+                    with (preferences.edit()) {
+                        putFloat("length", dimensionProject.length.toFloat())
+                        commit()
+                    }
                     dimensionProject.calcYarnRequired()
                     updateResults()
                 }
@@ -139,6 +143,10 @@ class DimensionProjectFragment : ProjectFragment() {
                 if (userUpdate && str.isNotEmpty()) {
                     dimensionProject.width = java.lang.Double.parseDouble(str)
                     dimensionProject.calcYarnRequired()
+                    with (preferences.edit()) {
+                        putFloat("width", dimensionProject.width.toFloat())
+                        commit()
+                    }
                     updateResults()
                 }
             }
@@ -184,10 +192,18 @@ class DimensionProjectFragment : ProjectFragment() {
         val parentID = parent.id
         if (parentID == R.id.sizeUnitsSpinner) {
             dimensionProject.lengthUnits = ShortLengthUnits.fromInt(pos)
+            with (preferences.edit()) {
+                putInt("lengthUnits", pos)
+                commit()
+            }
             project.calcYarnRequired()
             updateResults()
         } else if (parentID == widthUnitsId) {
-            dimensionProject.lengthUnits = ShortLengthUnits.fromInt(pos)
+            dimensionProject.widthUnits = ShortLengthUnits.fromInt(pos)
+            with (preferences.edit()) {
+                putInt("widthUnits", pos)
+                commit()
+            }
             project.calcYarnRequired()
             updateResults()
         } else {

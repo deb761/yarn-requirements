@@ -209,6 +209,10 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 val str = gaugeText.text.toString()
                 if (userUpdate && str.isNotEmpty()) {
                     project.gauge = java.lang.Double.parseDouble(str)
+                    with (preferences.edit()) {
+                        putFloat("gauge", project.gauge.toFloat())
+                        commit()
+                    }
                     project.calcYarnRequired()
                     updateResults()
                 }
@@ -236,6 +240,10 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 val str = ballSizeText.text.toString()
                 if (str.isNotEmpty()) {
                     project.ballSize = Integer.parseInt(str)
+                    with (preferences.edit()) {
+                        putInt("ballSize", project.ballSize)
+                        commit()
+                    }
                     project.calcBallsNeeded()
                     updateResults()
                 }
@@ -272,16 +280,35 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
         when (parent.id) {
             R.id.gaugeUnitsSpinner -> {
                 project.gaugeUnits = GaugeUnits.fromInt(pos)
+                with (preferences.edit()) {
+                    putInt("gaugeUnits", pos)
+                    commit()
+                }
                 project.calcYarnRequired()
             }
-            R.id.yarnUnitsSpinner -> project.yarnNeededUnits = LongLengthUnits.fromInt(pos)
+            R.id.yarnUnitsSpinner -> {
+                project.yarnNeededUnits = LongLengthUnits.fromInt(pos)
+                with (preferences.edit()) {
+                    putInt("yarnNeededUnits", pos)
+                    commit()
+                }
+                project.calcYarnRequired()
+            }
             R.id.ballSizeSpinner -> {
                 project.ballSizeUnits = LongLengthUnits.fromInt(pos)
+                with (preferences.edit()) {
+                    putInt("ballSizeUnits", pos)
+                    commit()
+                }
                 project.calcBallsNeeded()
             }
             R.id.ballFractSpinner -> {
                 project.isPartialBalls = pos != 0
                 project.calcBallsNeeded()
+                with (preferences.edit()) {
+                    putBoolean("isPartialBalls", project.isPartialBalls)
+                    commit()
+                }
             }
         }
         updateResults()

@@ -5,6 +5,7 @@ import com.inqint.yarnrequirements.SockProjectFragment
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.Serializable
 import java.util.*
 import kotlin.reflect.KClass
 
@@ -26,9 +27,8 @@ class Socks(name: String, thumbImageID: Int, imageID: Int, fragmentClass: KClass
     private var eu: HashMap<Int, Double>? = null
 
     // Define an enumeration for all the shoe size units out there
-    enum class ShoeSizeUnits {
+    enum class ShoeSizeUnits: Serializable {
         child, youth, women, men, euro;
-
 
         companion object {
             private var values: Array<ShoeSizeUnits>? = null

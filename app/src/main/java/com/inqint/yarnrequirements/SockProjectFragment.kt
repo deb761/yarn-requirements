@@ -56,6 +56,10 @@ class SockProjectFragment : ProjectFragment() {
                 val str = sizeText.text.toString()
                 if (userUpdate && str.isNotEmpty()) {
                     socks.size = java.lang.Double.parseDouble(str)
+                    with (preferences.edit()) {
+                        putFloat("size", socks.size.toFloat())
+                        commit()
+                    }
                     socks.calcYarnRequired()
                     updateResults()
                 }
@@ -98,6 +102,10 @@ class SockProjectFragment : ProjectFragment() {
         when (parent.id) {
             R.id.sizeUnitsSpinner -> {
                 socks.sizeUnits = Socks.ShoeSizeUnits.fromInt(pos)
+                with (preferences.edit()) {
+                    putInt("sizeUnits", pos)
+                    commit()
+                }
                 project.calcYarnRequired()
                 updateResults()
             }

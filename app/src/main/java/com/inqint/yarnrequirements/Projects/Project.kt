@@ -179,7 +179,7 @@ abstract class Project(var name: String, var thumbImageID: Int, var imageID: Int
         } catch (e: JSONException) {
         }
 
-        isPartialBalls = preferences.getBoolean("partialBalls", defPartialBalls)
+        isPartialBalls = preferences.getBoolean("isPartialBalls", defPartialBalls)
     }
 
     companion object {

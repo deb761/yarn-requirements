@@ -59,3 +59,9 @@
 }
 
 -keepclassmembernames class * extends com.inqint.yarnrequirements.Project
+
+#-keep class com.inqint.yarnrequirements.Projects.Project
+#-keep class * extends com.inqint.yarnrequirements.Projects.Project{}
+
+# Fragment management
+#-keep class * extends androidx.fragment.app.Fragment{}

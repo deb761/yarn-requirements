@@ -6,8 +6,8 @@ import kotlin.reflect.KClass
 /**
  * Created by deb on 4/27/16.
  */
-open class Scarf(name: String, thumbImageID: Int, imageID: Int, fragmentClass: KClass<DimensionProjectFragment>) :
-    DimensionProject(name, thumbImageID, imageID, fragmentClass) {
+open class Scarf(name: String, thumbImageID: Int, imageID: Int) :
+    DimensionProject(name, thumbImageID, imageID) {
 
     /* Make sure units are in SI units, then calculate based on the length & width */
     override fun calcYarnRequired() {

@@ -34,7 +34,7 @@ abstract class Project(var name: String, var thumbImageID: Int, var imageID: Int
         ballsNeeded = 0.0
     }
 
-    constructor(name: String, thumbImageID: Int, imageID: Int, fragment: KClass<*>) : this(
+    /*constructor(name: String, thumbImageID: Int, imageID: Int) : this(
         "project",
         0,
         0
@@ -42,13 +42,11 @@ abstract class Project(var name: String, var thumbImageID: Int, var imageID: Int
         this.name = name
         this.thumbImageID = thumbImageID
         this.imageID = imageID
-        this.fragment = fragment as KClass<ProjectFragment>
-    }
+    }*/
 
     abstract fun calcYarnRequired()
 
-    // Calculations borrowed from http://www.thedietdiary.com/knittingfiend/tools/EstimatingYardageRectangles.html
-    // copyright Lucia Liljegren 2005.
+    // Calculations derived by The Inquisitive Introvert
     fun calcYarnRequired(siLength: Double, siWidth: Double) {
         if (gauge <= 0) {
             yarnNeeded = 0

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.inqint.yarnrequirements.Projects.Project
 
 /**
  * A fragment representing a list of Items.
@@ -46,19 +45,6 @@ class ProjectListFragment : Fragment() {
             view.adapter = ProjectRecyclerViewAdapter(ProjectContent.PROJECTS)
         }
         return view
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
-     */
-    public interface OnListFragmentInteractionListener {
-        fun onListFragmentInteraction(project: Project)
     }
 
     companion object {

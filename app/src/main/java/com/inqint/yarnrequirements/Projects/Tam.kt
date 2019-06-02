@@ -1,8 +1,5 @@
 package com.inqint.yarnrequirements.Projects
 
-import com.inqint.yarnrequirements.SizeProjectFragment
-import kotlin.reflect.KClass
-
 /**
  * Created by deb on 4/27/16.
  * Tams are also hats, so base them off of Toques.  Toques are this shape:
@@ -11,8 +8,8 @@ import kotlin.reflect.KClass
  *  |    |
  *   -__-
  */
-class Tam(name: String, thumbImageID: Int, imageID: Int, fragmentClass: KClass<SizeProjectFragment>) :
-    SizeProject(name, thumbImageID, imageID, fragmentClass) {
+class Tam(name: String, thumbImageID: Int, imageID: Int) :
+    SizeProject(name, thumbImageID, imageID) {
 
     // Calculate the yarn required for a tam
     // The size is the actual head size, the band will be smaller to fit snug

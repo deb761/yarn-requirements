@@ -1,13 +1,10 @@
 package com.inqint.yarnrequirements.Projects
 
-import com.inqint.yarnrequirements.SizeProjectFragment
-import kotlin.reflect.KClass
-
 /**
  * Created by deb on 4/27/16.
  */
-class Gloves(name: String, thumbImageID: Int, imageID: Int, fragmentClass: KClass<SizeProjectFragment>) :
-    Mittens(name, thumbImageID, imageID, fragmentClass) {
+class Gloves(name: String, thumbImageID: Int, imageID: Int) :
+    Mittens(name, thumbImageID, imageID) {
 
     override fun calcYarnRequired() {
         var width = size * 1.05 // add extra to go around fingers

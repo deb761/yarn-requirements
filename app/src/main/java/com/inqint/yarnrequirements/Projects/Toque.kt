@@ -1,16 +1,13 @@
 package com.inqint.yarnrequirements.Projects
 
-import com.inqint.yarnrequirements.SizeProjectFragment
-import kotlin.reflect.KClass
-
 /**
  * Created by deb on 4/27/16.
  *  For now, treat hats as a piece of fabric about like this:
      /\
     |  |
  */
-open class Toque(name: String, thumbImageID: Int, imageID: Int, fragmentClass: KClass<SizeProjectFragment>) :
-    SizeProject(name, thumbImageID, imageID, fragmentClass) {
+open class Toque(name: String, thumbImageID: Int, imageID: Int) :
+    SizeProject(name, thumbImageID, imageID) {
 
     // Calculate the yarn required for a toque, where the total length is
     // 0.5 * head circumference and a cone on the top for the cap that

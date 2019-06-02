@@ -12,7 +12,7 @@ import com.inqint.yarnrequirements.Projects.Project
 import com.inqint.yarnrequirements.Projects.SizeProject
 
 class ProjectRecyclerViewAdapter(
-    private val mValues: List<Project>
+    private val values: List<ProjectContent.FragmentProject>
 ) : RecyclerView.Adapter<ProjectRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,12 +22,12 @@ class ProjectRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.mItem = mValues[position]
-        holder.mNameView.text = holder.mItem!!.name
-        holder.imageView.setImageResource(holder.mItem!!.thumbImageID)
+        holder.item = values[position].project
+        holder.nameView.text = holder.item!!.name
+        holder.imageView.setImageResource(holder.item!!.thumbImageID)
 
         holder.mView.setOnClickListener {
-            val project = mValues[position]
+            val project = values[position].project
             if (project is DimensionProject) {
                 val projectFragment = ProjectListFragmentDirections.actionListToDimensionProjectFragment(project)
                 it.findNavController().navigate(projectFragment)
@@ -44,21 +44,20 @@ class ProjectRecyclerViewAdapter(
     }
 
     override fun getItemCount(): Int {
-        return mValues.size
+        return values.size
     }
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mNameView: TextView
+        val nameView = mView.findViewById<View>(R.id.name) as TextView
         val imageView: ImageView
-        var mItem: Project? = null
+        var item: Project? = null
 
         init {
-            mNameView = mView.findViewById<View>(R.id.name) as TextView
             imageView = mView.findViewById<View>(R.id.thumb_image) as ImageView
         }
 
         override fun toString(): String {
-            return super.toString() + " '" + mNameView.text + "'"
+            return super.toString() + " '" + nameView.text + "'"
         }
     }
 

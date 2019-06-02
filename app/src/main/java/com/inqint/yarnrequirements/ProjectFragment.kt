@@ -326,10 +326,10 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
          * @param project Parameter 1.
          * @return A new instance of fragment ProjectFragment.
          */
-        fun newInstance(project: Project): ProjectFragment {
+        fun newInstance(pair: ProjectContent.FragmentProject): ProjectFragment {
             val args = Bundle()
-            args.putSerializable(ARG_PROJECT, project)
-            val ctor = project.fragment.constructors.singleOrNull()!! as () -> ProjectFragment
+            args.putSerializable(ARG_PROJECT, pair.project)
+            val ctor = pair.fragment.constructors.singleOrNull()!! as () -> ProjectFragment
             val fragment = ctor()
             fragment.arguments = args
             return fragment

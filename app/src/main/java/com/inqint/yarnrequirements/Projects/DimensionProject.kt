@@ -1,17 +1,15 @@
 package com.inqint.yarnrequirements.Projects
 
 import android.content.SharedPreferences
-import com.inqint.yarnrequirements.DimensionProjectFragment
 import org.json.JSONException
 import org.json.JSONObject
-import kotlin.reflect.KClass
 
 /**
  * Created by deb on 11/25/16.
  */
 
-abstract class DimensionProject(name: String, thumbImageID: Int, imageID: Int, fragmentClass: KClass<DimensionProjectFragment>) :
-    Project(name, thumbImageID, imageID, fragmentClass) {
+abstract class DimensionProject(name: String, thumbImageID: Int, imageID: Int) :
+    Project(name, thumbImageID, imageID) {
 
     var length: Double = 0.toDouble()
     var width: Double = 0.toDouble()

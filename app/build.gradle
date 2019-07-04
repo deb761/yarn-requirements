@@ -80,8 +80,8 @@ dependencies {
     freeImplementation 'com.google.ads.mediation:facebook:5.4.0.0'
 }
 
-if (!getGradle().getStartParameter().getTaskRequests()
-        .toString().contains("Free")) {
-
-    apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
+subprojects {
+    if (name.startsWith('free')) {
+        apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
+    }
 }

@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "1031553085861",
+    "firebase_url": "https://knitting-yarn-calc.firebaseio.com",
+    "project_id": "knitting-yarn-calc",
+    "storage_bucket": "knitting-yarn-calc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031553085861:android:ef047a83504a4f36",
+        "android_client_info": {
+          "package_name": "com.inqint.yarnrequirements.free"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031553085861-ueo82uc27mh36k3jaj2aerru8ck33gff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx-WV1AA9_eq8Vb88L159gY2kl_JsWJyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031553085861-ueo82uc27mh36k3jaj2aerru8ck33gff.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-3658144280100378~1100243073"
+    }
+  ],
+  "configuration_version": "1"
+}

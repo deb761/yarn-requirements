@@ -12,13 +12,13 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.initialization.InitializationStatus
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.inqint.yarnrequirements.MainActivity
 import com.inqint.yarnrequirements.R
 import java.net.MalformedURLException
 import java.net.URL
 import java.util.*
-
 
 
 open class FreeActivity : MainActivity() {
@@ -65,7 +65,8 @@ open class FreeActivity : MainActivity() {
 
         // Admob
         // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
-        MobileAds.initialize(this, getString(R.string.admob_id))
+        //MobileAds.initialize(this, getString(R.string.admob_id))
+        MobileAds.initialize(this) {}
 
         adView = findViewById(R.id.adView)
         checkAdConsent()
@@ -74,6 +75,7 @@ open class FreeActivity : MainActivity() {
     private fun checkAdConsent() {
         val consentInformation = ConsentInformation.getInstance(this)
         consentInformation.debugGeography = DebugGeography.DEBUG_GEOGRAPHY_EEA;
+        consentInformation.addTestDevice("34E8D9C471EEC9B21B67B0531C4DA7B8")
         val publisherIds = arrayOf("pub-3658144280100378")
         consentInformation.requestConsentInfoUpdate(publisherIds, object : ConsentInfoUpdateListener {
             override fun onConsentInfoUpdated(consentStatus: ConsentStatus) {

@@ -47,9 +47,9 @@ class WeightRecyclerViewAdapter(private val mValues: List<WeightItem>) :
         val mmUnits = res.getString(R.string.mm_unit)
         // Always show international needle sizes
         if (yarn.needles.size == 2) {
-            sizes += String.format(res.getString(R.string.unit_range_format), needles[0]!!.getmm(), needles[1]!!.getmm(), mmUnits)
+            sizes += String.format(res.getString(R.string.needle_range_format), needles[0]!!.getmm(), needles[1]!!.getmm(), mmUnits)
         } else {
-            sizes += String.format(res.getString(R.string.unit_format), needles[0]!!.getmm(), mmUnits)
+            sizes += String.format(res.getString(R.string.needle_format), needles[0]!!.getmm(), mmUnits)
         }
 
         holder.mNeedleView.setText("${res.getString(R.string.needle_size)}: $sizes")
@@ -75,8 +75,8 @@ class WeightRecyclerViewAdapter(private val mValues: List<WeightItem>) :
             wpi = String.format(res.getString(R.string.unit_format), windings[0], wpiUnits)
         }
 
-        val length = yarn.length.toDouble()
-        val weight = yarn.weight.toDouble()
+        val length = yarn.length
+        val weight = yarn.weight
 
         holder.mWindingsView.text = wpi
         holder.mDensityView.text = String.format(res.getString(R.string.density_format), length, weight)

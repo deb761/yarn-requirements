@@ -35,8 +35,8 @@ class WeightContent(json: String) {
     constructor(jsonObject: JSONObject) {
         val name: String    // yarn thickness description
         val needles: Array<KnittingNeedle?> // suggested needle sizes in US and international units
-        val gauge: DoubleArray // Stitches per 4" or 10cm
-        val wpi: DoubleArray // Windings per inch
+        val gauge: IntArray // Stitches per 4" or 10cm
+        val wpi: IntArray // Windings per inch
         val length: Int // Density per 50 gm for wool
         val weight: Int // ball weight in grams
 
@@ -48,14 +48,14 @@ class WeightContent(json: String) {
                 needles[idx] = KnittingNeedle(array.getDouble(idx))
             }
             array = jsonObject.getJSONArray("gauge")
-            this.gauge = DoubleArray(array.length())
+            this.gauge = IntArray(array.length())
             for (idx in gauge.indices) {
-                gauge[idx] = array.getDouble(idx)
+                gauge[idx] = array.getInt(idx)
             }
             array = jsonObject.getJSONArray("windings")
-            this.wpi = DoubleArray(array.length())
+            this.wpi = IntArray(array.length())
             for (idx in wpi.indices) {
-                wpi[idx] = array.getDouble(idx)
+                wpi[idx] = array.getInt(idx)
             }
 
             this.length = jsonObject.getInt("length")

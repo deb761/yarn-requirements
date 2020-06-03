@@ -17,13 +17,13 @@
     <string name="wpi">wpi (витки на дюйм)</string>
     <string name="meter_abbr">м</string>
     <string name="per">на</string>
-    <string name="gram_abbr">g</string>
+    <string name="gram_abbr">г</string>
     <string name="yarn_ball">Полный</string>
     <string name="length_label">Длина</string>
     <string name="width_label">Ширина</string>
     <string name="copyright">© Deborah Engelmeyer, The Inquisitive Introvert, 2020</string>
     <string name="sweater_sizing">Размеры свитеров и жилетов соответствуют стандартам изменениий опубликованных Craft Yarn Council.</string>
-    <string name="sweater_dims">.Изменения для свитеров и жилетов соответствуют указанным размерам. Свитера и жилеты имеют длину до бедра. Свитера имеют спущенные плечи и суженые рукава. Если вы хотите сделать  свитер более обтягивающим, используйте меньше пряжи. Если вы хотите сделать свитер длинее, используйте больше пряжи.</string>
+    <string name="sweater_dims">Изменения для свитеров и жилетов соответствуют указанным размерам. Свитера и жилеты имеют длину до бедра. Свитера имеют спущенные плечи и суженые рукава. Если вы хотите сделать  свитер более обтягивающим, используйте меньше пряжи. Если вы хотите сделать свитер длинее, используйте больше пряжи.</string>
     <string name="blanket_info">Изменения для покрывал и шарфов соотвенствую конечному размеру.  Добавьте дополнительную пряжу для кисточек.</string>
     <string name="hats_dims">Изменения для берета и шапки соответствуют размеру головы, а не одежды.</string>
     <string name="credits">Расчет количества пряжи</string>
@@ -49,9 +49,11 @@
     <string name="worsted_yarn">Грубая</string>
     <string name="sport_yarn">Спорт</string>
     <string name="super_bulky_yarn">Очень объемная</string>
-    <string name="jumbo_yarn">Очень очень объемная</string>
-    <string name="unit_range_format">%1$.2f-%2$.2f %3$s</string>
-    <string name="unit_format">%.2f %2$s</string>
-    <string name="mm_unit">м</string>
-    <string name="density_format">%1$f м на %2$sg г мяча</string>
+    <string name="jumbo_yarn">Гигантский</string>
+    <string name="needle_range_format">%1$.2f-%2$.2f %3$s</string>
+    <string name="needle_format">%.2f мм</string>
+    <string name="unit_range_format">%1$d-%2$d %3$s</string>
+    <string name="unit_format">%1$d %2$s</string>
+    <string name="mm_unit">мм</string>
+    <string name="density_format">%1$d м на %2$d г мяча</string>
 </resources>

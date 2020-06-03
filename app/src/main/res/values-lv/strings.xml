@@ -49,10 +49,12 @@
     <string name="worsted_yarn">Vidēja vērpuma dzija</string>
     <string name="aran_yarn">Aran dzija</string>
     <string name="bulky_yarn">Bieza dzija</string>
-    <string name="jumbo_yarn">Ļoti bieza dzija</string>
+    <string name="jumbo_yarn">Jumbo dzija</string>
     <string name="super_bulky_yarn">Ļoti ļoti bieza dzija</string>
-    <string name="unit_range_format">%1$.2f-%2$.2f %3$s</string>
-    <string name="unit_format">%.2f %2$s</string>
+    <string name="needle_range_format">%1$.2f-%2$.2f %3$s</string>
+    <string name="needle_format">%.2f mm</string>
+    <string name="unit_range_format">%1$d-%2$d %3$s</string>
+    <string name="unit_format">%1$d %2$s</string>
     <string name="mm_unit">mm</string>
     <string name="density_format">$1$.0fm vienā %2$sg kamoli</string>
 </resources>

@@ -57,8 +57,10 @@
     <string name="jumbo_yarn">Jumbo</string>
 
     <!-- other weight strings -->
-    <string name="unit_range_format">%1$.2f-%2$.2f %3$s</string>
-    <string name="unit_format">%.2f mm</string>
+    <string name="needle_range_format">%1$.2f-%2$.2f %3$s</string>
+    <string name="needle_format">%.2f mm</string>
+    <string name="unit_range_format">%1$d-%2$d %3$s</string>
+    <string name="unit_format">%1$d %2$s</string>
     <string name="mm_unit">mm</string>
-    <string name="density_format">%1$.0fm per %2$sg ball</string>
+    <string name="density_format">%1$dm per %2$dg ball</string>
 </resources>

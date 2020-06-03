@@ -1,7 +1,7 @@
 <resources>
-    <string name="amazon_app_key">"49f9d12b69f3440cac5b6e991b8c3db0"</string>
+    <string name="amazon_app_key" translatable="false">"49f9d12b69f3440cac5b6e991b8c3db0"</string>
     <string name="app_name">Knitting Yarn Calc - Free</string>
-    <string name="admob_id">ca-app-pub-3658144280100378/2712707640</string>
+    <string name="admob_id" translatable="false">ca-app-pub-3658144280100378/2712707640</string>
 
     <string name="privacy_summary">Your privacy is important to us.  This app is provided free of charge and uses ads to support it.</string>
     <string name="reason">While the Knitting Yarn Calculator itself does not use any data from you, the advertising service we use does.</string>

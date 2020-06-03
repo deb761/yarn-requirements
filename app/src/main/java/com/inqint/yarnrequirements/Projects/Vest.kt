@@ -3,8 +3,8 @@ package com.inqint.yarnrequirements.Projects
 /**
  * Created by deb on 4/27/16.
  */
-class Vest(name: String, thumbImageID: Int, imageID: Int) :
-    Sweater(name, thumbImageID, imageID) {
+class Vest(name: String, nameID: Int, thumbImageID: Int, imageID: Int) :
+    Sweater(name, nameID, thumbImageID, imageID) {
 
     /* Results of linear fit of Length to hips by Chest size:
      (Intercept)      Chest

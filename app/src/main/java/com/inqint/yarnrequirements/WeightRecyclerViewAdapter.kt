@@ -1,5 +1,8 @@
 package com.inqint.yarnrequirements
 
+import android.content.res.Resources
+import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +16,10 @@ import java.util.*
  * [RecyclerView.Adapter] that can display a [WeightItem].
  */
 class WeightRecyclerViewAdapter(private val mValues: List<WeightItem>) :
+
     RecyclerView.Adapter<WeightRecyclerViewAdapter.ViewHolder>() {
 
+    val TAG:String = "WeightRecyclerVwAdptr"
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_weight, parent, false)
@@ -22,12 +27,14 @@ class WeightRecyclerViewAdapter(private val mValues: List<WeightItem>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.mItem = mValues[position]
-        holder.mNameView.text = mValues[position].name
+        var yarn = mValues[position]
+        holder.mItem = yarn!!
+        var nameId = holder.mNameView.resources.getIdentifier(yarn.name + "_yarn", "string", holder.mView.context.packageName)
+        holder.mNameView.text = holder.mNameView.resources.getText(nameId)
         var sizes = ""
 
         val country = Locale.getDefault()
-        val needles = holder.mItem!!.needles
+        val needles = yarn.needles
         // If the user is in the US, show US needle sizes first
         if (country.equals(Locale.US)) {
             if (needles.size == 2) {
@@ -36,45 +43,43 @@ class WeightRecyclerViewAdapter(private val mValues: List<WeightItem>) :
                 sizes = String.format("%s+ US, ", needles[0]!!.getus())
             }
         }
+        val res = holder.mView.resources
+        val mmUnits = res.getString(R.string.mm_unit)
         // Always show international needle sizes
-        if (holder.mItem!!.needles.size == 2) {
-            sizes += String.format("%1$.2f-%2$.2f mm", needles[0]!!.getmm(), needles[1]!!.getmm())
+        if (yarn.needles.size == 2) {
+            sizes += String.format(res.getString(R.string.unit_range_format), needles[0]!!.getmm(), needles[1]!!.getmm(), mmUnits)
         } else {
-            sizes += String.format("%.2f mm", needles[0]!!.getmm())
+            sizes += String.format(res.getString(R.string.unit_format), needles[0]!!.getmm(), mmUnits)
         }
-        val res = holder.mView.getResources()
 
-        holder.mNeedleView.setText(res.getString(R.string.needle_size) + ": " + sizes)
+        holder.mNeedleView.setText("${res.getString(R.string.needle_size)}: $sizes")
 
         // Show the gauge
-        val gauges = holder.mItem!!.gauge
+        val gauges = yarn.gauge
+        val gaugeUnits = res.getString(R.string.gauge_length)
         var gauge = ""
         if (gauges.size == 2) {
-            gauge = String.format("%1$.0f-%2$.0f ", gauges[0], gauges[1])
+            gauge = String.format(res.getString(R.string.unit_range_format), gauges[0], gauges[1], gaugeUnits)
         } else {
-            gauge = String.format("%.0f ", gauges[0])
+            gauge = String.format(res.getString(R.string.unit_format), gauges[0], gaugeUnits)
         }
-        holder.mGaugeView.setText(res.getString(R.string.gauge) + ": " + gauge + res.getString(R.string.gauge_length))
+        holder.mGaugeView.setText("${res.getString(R.string.gauge_label)}: $gauge")
 
         // format windings string
         var wpi = ""
-        val windings = holder.mItem!!.wpi
+        val windings = yarn.wpi
+        val wpiUnits = res.getString(R.string.wpi)
         if (windings.size == 2) {
-            wpi = String.format("%1$.0f-%2$.0f", windings[0], windings[1])
+            wpi = String.format(res.getString(R.string.unit_range_format), windings[0], windings[1], wpiUnits)
         } else {
-            wpi = String.format("%.0f", windings[0])
+            wpi = String.format(res.getString(R.string.unit_format), windings[0], wpiUnits)
         }
 
-        val length = holder.mItem!!.length.toDouble()
-        val weight = holder.mItem!!.weight.toDouble()
+        val length = yarn.length.toDouble()
+        val weight = yarn.weight.toDouble()
 
-        holder.mWindingsView.text = String.format("%1\$s %2\$s", wpi, res.getString(R.string.wpi))
-        holder.mDensityView.text = String.format(
-            "%1$.0f%2\$s %3\$s %4\$s%5\$s %6\$s", length,
-            res.getString(R.string.meter_abbr), res.getString(R.string.per),
-            weight, res.getString(R.string.gram_abbr),
-            res.getString(R.string.yarn_ball)
-        )
+        holder.mWindingsView.text = wpi
+        holder.mDensityView.text = String.format(res.getString(R.string.density_format), length, weight)
     }
 
     override fun getItemCount(): Int {

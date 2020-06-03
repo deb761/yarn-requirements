@@ -9,7 +9,7 @@ import kotlin.reflect.KClass
 
 
 /* The basic definition of a knitting project.  This class is extended for each project type. */
-abstract class Project(var name: String, var thumbImageID: Int, var imageID: Int) : Serializable {
+abstract class Project(var name: String, var nameID: Int, var thumbImageID: Int, var imageID: Int) : Serializable {
     var gauge: Double = 0.toDouble()
     var gaugeUnits: GaugeUnits
     lateinit var fragment: KClass<ProjectFragment>
@@ -33,16 +33,6 @@ abstract class Project(var name: String, var thumbImageID: Int, var imageID: Int
         ballSizeUnits = LongLengthUnits.meters
         ballsNeeded = 0.0
     }
-
-    /*constructor(name: String, thumbImageID: Int, imageID: Int) : this(
-        "project",
-        0,
-        0
-    ) {
-        this.name = name
-        this.thumbImageID = thumbImageID
-        this.imageID = imageID
-    }*/
 
     abstract fun calcYarnRequired()
 

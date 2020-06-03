@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="gauge_units_array">
+        <item>пет/дюйма</item>
+        <item>пет/4 дюйма</item>
+        <item>пет/10 см</item>
+    </string-array>
+    <string-array name="short_length_units_array">
+        <item>дюйма</item>
+        <item>см</item>
+    </string-array>
+    <string-array name="long_length_units_array">
+        <item>ярдов</item>
+        <item>метров</item>
+    </string-array>
+    <string-array name="partial_ball_array">
+        <item>Полный</item>
+        <item>Неполный</item>
+    </string-array>
+    <string-array name="shoe_size_units_array">
+        <item>Дет(США)</item>
+        <item>Юн(США)</item>
+        <item>Жен(США)</item>
+        <item>Муж(США)</item>
+        <item>Евро</item>
+    </string-array>
+</resources>

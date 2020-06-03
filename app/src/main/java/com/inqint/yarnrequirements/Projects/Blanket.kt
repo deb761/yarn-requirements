@@ -3,8 +3,8 @@ package com.inqint.yarnrequirements.Projects
 /**
  * Created by deb on 4/27/16.
  */
-class Blanket(name: String, thumbImageID: Int, imageID: Int) :
-    Scarf(name, thumbImageID, imageID) {
+class Blanket(name: String, nameID: Int, thumbImageID: Int, imageID: Int) :
+    Scarf(name, nameID, thumbImageID, imageID) {
 
     override fun calcYarnRequired() {
         super.calcYarnRequired()

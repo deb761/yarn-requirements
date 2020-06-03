@@ -23,7 +23,7 @@ class ProjectRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.item = values[position].project
-        holder.nameView.text = holder.item!!.name
+        holder.nameView.text = holder.itemView.context.getText(holder.item!!.nameID)
         holder.imageView.setImageResource(holder.item!!.thumbImageID)
 
         holder.mView.setOnClickListener {

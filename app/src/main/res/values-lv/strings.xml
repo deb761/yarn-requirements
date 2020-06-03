@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">Adīšanas dzija Calc</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_home">Mājas</string>
+    <string name="title_weights">Svars</string>
+    <string name="title_info">Informācija</string>
+
+    <string name="sweater">Džemperi</string>
+    <string name="gauge_label">Blīvums</string>
+    <string name="size_label">Krūšu apk</string>
+    <string name="yarn_needed_label">Daudzums</string>
+    <string name="ball_size_label">Garums</string>
+    <string name="balls_needed_label">Kamoli</string>
+    <string name="needle_size">Adatas</string>
+    <string name="gauge">Blīvums</string>
+    <string name="gauge_length">v./10cm</string>
+    <string name="wpi">wpi (tinumi/colla)</string>
+    <string name="meter_abbr">m</string>
+    <string name="per">vienā</string>
+    <string name="gram_abbr">g</string>
+    <string name="yarn_ball">kamoli</string>
+    <string name="length_label">Garums</string>
+    <string name="width_label">Platums</string>
+    <string name="copyright">© Deborah Engelmeyer, The Inquisitive Introvert, 2020</string>
+    <string name="sweater_sizing">Džemperu un vestu izmēri balstīti uz Craft Yarn Council standarta izmēriem.</string>
+    <string name="sweater_dims">Džemperu un vestu izmēri norādīti gataviem apģērbiem. Džemperu plecu daļa ir taisna, bet piedurknes - konusveida. Džemperi un vestes adīti taisni, līdz gurnu līnijai. Plecu daļa ir taisna, piedurknes - konusveida. Lietojiet mazāk dzijas pieguļošākiem apģērbiem, bet vairāk - garākiem adījumiem.</string>
+    <string name="blanket_info">Sega un šalli mērījumi tiek pabeigta izmēru. Pievienot vairāk dzija pušķi.</string>
+    <string name="hats_dims">Segu un šaļļu izmēri norādīti gataviem adījumiem. Veidojot pušķus vai bumbuļus, būs nepieciešams vairāk dzijas.</string>
+    <string name="credits">Dzijas daudzums balstīts uz The Inquisitive Introvert aprēķiniem.</string>
+
+    <!-- initial settings for each project, use -im for US -->
+    <string name="project_settings">%s-im.json</string>
+    <string name="yarn_needed">Daudzums</string>
+    <string name="icon8">Icon8</string>
+    <string name="icons">Ikonas:</string>
+    <string name="title_privacy">Privacy Policy</string>
+    <string name="mittens">Dūraiņi</string>
+    <string name="gloves">Pirkstaiņi</string>
+    <string name="socks">Zeķes</string>
+    <string name="tam">Beretes</string>
+    <string name="scarf">Šalles</string>
+    <string name="toque">Cepures</string>
+    <string name="vest">Vestes</string>
+    <string name="blanket">Segas</string>
+    <string name="fingering_yarn">Zeķu dzija</string>
+    <string name="sport_yarn">Sporta dzija</string>
+    <string name="dk_yarn">Divkārtīga dzija</string>
+    <string name="worsted_yarn">Vidēja vērpuma dzija</string>
+    <string name="aran_yarn">Aran dzija</string>
+    <string name="bulky_yarn">Bieza dzija</string>
+    <string name="jumbo_yarn">Ļoti bieza dzija</string>
+    <string name="super_bulky_yarn">Ļoti ļoti bieza dzija</string>
+    <string name="unit_range_format">%1$.2f-%2$.2f %3$s</string>
+    <string name="unit_format">%.2f %2$s</string>
+    <string name="mm_unit">mm</string>
+    <string name="density_format">$1$.0fm vienā %2$sg kamoli</string>
+</resources>

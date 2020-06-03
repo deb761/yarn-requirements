@@ -8,8 +8,8 @@ package com.inqint.yarnrequirements.Projects
  *  |    |
  *   -__-
  */
-class Tam(name: String, thumbImageID: Int, imageID: Int) :
-    SizeProject(name, thumbImageID, imageID) {
+class Tam(name: String, nameID: Int, thumbImageID: Int, imageID: Int) :
+    SizeProject(name, nameID, thumbImageID, imageID) {
 
     // Calculate the yarn required for a tam
     // The size is the actual head size, the band will be smaller to fit snug

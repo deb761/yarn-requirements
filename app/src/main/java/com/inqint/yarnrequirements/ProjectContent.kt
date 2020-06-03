@@ -28,22 +28,15 @@ object ProjectContent {
 
     init {
         // Add projects
-        addProject(Mittens("Mittens", R.drawable.mittens_thumb, R.drawable.mittens), SizeProjectFragment::class)
-        addProject(Gloves("Gloves", R.drawable.gloves_thumb, R.drawable.gloves), SizeProjectFragment::class)
-        addProject(Socks("Socks", R.drawable.socks_thumb, R.drawable.socks), SockProjectFragment::class)
-        addProject(Tam("Tam", R.drawable.tam_thumb, R.drawable.tam), SizeProjectFragment::class)
-        addProject(Scarf("Scarf", R.drawable.scarf_thumb, R.drawable.scarf), DimensionProjectFragment::class)
-        addProject(Toque("Toque", R.drawable.toque_thumb, R.drawable.toque), SizeProjectFragment::class)
-        addProject(Sweater("Sweater", R.drawable.sweater_thumb, R.drawable.sweater), SizeProjectFragment::class)
-        addProject(Vest("Vest", R.drawable.vest_thumb, R.drawable.vest), SizeProjectFragment::class)
-        addProject(
-            Blanket(
-                "Blanket",
-                R.drawable.blanket_thumb,
-                R.drawable.blanket
-                ),
-                DimensionProjectFragment::class
-        )
+        addProject(Mittens("Mittens", R.string.mittens, R.drawable.mittens_thumb, R.drawable.mittens), SizeProjectFragment::class)
+        addProject(Gloves("Gloves", R.string.gloves, R.drawable.gloves_thumb, R.drawable.gloves), SizeProjectFragment::class)
+        addProject(Socks("Socks", R.string.socks, R.drawable.socks_thumb, R.drawable.socks), SockProjectFragment::class)
+        addProject(Tam("Tam", R.string.tam, R.drawable.tam_thumb, R.drawable.tam), SizeProjectFragment::class)
+        addProject(Scarf("Scarf", R.string.scarf, R.drawable.scarf_thumb, R.drawable.scarf), DimensionProjectFragment::class)
+        addProject(Toque("Toque", R.string.toque, R.drawable.toque_thumb, R.drawable.toque), SizeProjectFragment::class)
+        addProject(Sweater("Sweater", R.string.sweater, R.drawable.sweater_thumb, R.drawable.sweater), SizeProjectFragment::class)
+        addProject(Vest("Vest", R.string.vest, R.drawable.vest_thumb, R.drawable.vest), SizeProjectFragment::class)
+        addProject(Blanket("Blanket", R.string.blanket, R.drawable.blanket_thumb, R.drawable.blanket), DimensionProjectFragment::class)
     }
 
     private fun addProject(project: Project, fragment: KClass<*>) {

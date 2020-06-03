@@ -11,8 +11,8 @@ import java.util.*
  * Created by deb on 4/27/16.
  * This class calculates the yarn needed for socks of US and Euro shoe sizes.
  */
-class Socks(name: String, thumbImageID: Int, imageID: Int) :
-    Project(name, thumbImageID, imageID) {
+class Socks(name: String, nameID: Int, thumbImageID: Int, imageID: Int) :
+    Project(name, nameID, thumbImageID, imageID) {
     // The shoe size
     var size: Double = 0.toDouble()
     // Type of shoe size

@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">Калькулятор вязальной пряжи</string>
+
+    <string name="title_home">Главная</string>
+    <string name="title_weights">Вес</string>
+    <string name="title_info">Инфо</string>
+
+    <string name="sweater">Свитер</string>
+    <string name="gauge_label">Калибр</string>
+    <string name="size_label">По груди</string>
+    <string name="yarn_needed_label">Длина</string>
+    <string name="ball_size_label">В мотке</string>
+    <string name="balls_needed_label">Мотков</string>
+    <string name="needle_size">размер спиц</string>
+    <string name="gauge">Калибр</string>
+    <string name="gauge_length">пет/10 см</string>
+    <string name="wpi">wpi (витки на дюйм)</string>
+    <string name="meter_abbr">м</string>
+    <string name="per">на</string>
+    <string name="gram_abbr">g</string>
+    <string name="yarn_ball">Полный</string>
+    <string name="length_label">Длина</string>
+    <string name="width_label">Ширина</string>
+    <string name="copyright">© Deborah Engelmeyer, The Inquisitive Introvert, 2020</string>
+    <string name="sweater_sizing">Размеры свитеров и жилетов соответствуют стандартам изменениий опубликованных Craft Yarn Council.</string>
+    <string name="sweater_dims">.Изменения для свитеров и жилетов соответствуют указанным размерам. Свитера и жилеты имеют длину до бедра. Свитера имеют спущенные плечи и суженые рукава. Если вы хотите сделать  свитер более обтягивающим, используйте меньше пряжи. Если вы хотите сделать свитер длинее, используйте больше пряжи.</string>
+    <string name="blanket_info">Изменения для покрывал и шарфов соотвенствую конечному размеру.  Добавьте дополнительную пряжу для кисточек.</string>
+    <string name="hats_dims">Изменения для берета и шапки соответствуют размеру головы, а не одежды.</string>
+    <string name="credits">Расчет количества пряжи</string>
+
+    <!-- initial settings for each project, use -im for US -->
+    <string name="project_settings">%s-si.json</string>
+    <string name="yarn_needed">Длина</string>
+    <string name="icon8">Иконка8</string>
+    <string name="icons">Иконки:</string>
+    <string name="title_privacy">Конфиденциальность</string>
+    <string name="mittens">Варежки</string>
+    <string name="gloves">Перчатки</string>
+    <string name="socks">Носки</string>
+    <string name="tam">Берет</string>
+    <string name="scarf">Шарф</string>
+    <string name="toque">Шапка</string>
+    <string name="vest">Жилет</string>
+    <string name="blanket">Покрывало</string>
+    <string name="fingering_yarn">Тонкая</string>
+    <string name="dk_yarn">ДК</string>
+    <string name="bulky_yarn">Объемная</string>
+    <string name="aran_yarn">Аран</string>
+    <string name="worsted_yarn">Грубая</string>
+    <string name="sport_yarn">Спорт</string>
+    <string name="super_bulky_yarn">Очень объемная</string>
+    <string name="jumbo_yarn">Очень очень объемная</string>
+    <string name="unit_range_format">%1$.2f-%2$.2f %3$s</string>
+    <string name="unit_format">%.2f %2$s</string>
+    <string name="mm_unit">м</string>
+    <string name="density_format">%1$f м на %2$sg г мяча</string>
+</resources>

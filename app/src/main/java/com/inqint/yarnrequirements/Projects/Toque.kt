@@ -6,8 +6,8 @@ package com.inqint.yarnrequirements.Projects
      /\
     |  |
  */
-open class Toque(name: String, thumbImageID: Int, imageID: Int) :
-    SizeProject(name, thumbImageID, imageID) {
+open class Toque(name: String, nameID: Int, thumbImageID: Int, imageID: Int) :
+    SizeProject(name, nameID, thumbImageID, imageID) {
 
     // Calculate the yarn required for a toque, where the total length is
     // 0.5 * head circumference and a cone on the top for the cap that

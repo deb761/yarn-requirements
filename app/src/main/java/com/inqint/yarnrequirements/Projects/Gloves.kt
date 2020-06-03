@@ -3,8 +3,8 @@ package com.inqint.yarnrequirements.Projects
 /**
  * Created by deb on 4/27/16.
  */
-class Gloves(name: String, thumbImageID: Int, imageID: Int) :
-    Mittens(name, thumbImageID, imageID) {
+class Gloves(name: String, nameID: Int, thumbImageID: Int, imageID: Int) :
+    Mittens(name, nameID, thumbImageID, imageID) {
 
     override fun calcYarnRequired() {
         var width = size * 1.05 // add extra to go around fingers

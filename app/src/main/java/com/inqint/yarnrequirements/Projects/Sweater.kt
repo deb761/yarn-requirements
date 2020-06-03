@@ -3,8 +3,8 @@ package com.inqint.yarnrequirements.Projects
 /**
  * Created by deb on 4/25/16.
  */
-open class Sweater(name: String, thumbImageID: Int, imageID: Int) :
-    SizeProject(name, thumbImageID, imageID) {
+open class Sweater(name: String, nameID: Int, thumbImageID: Int, imageID: Int) :
+    SizeProject(name, nameID, thumbImageID, imageID) {
 
     override fun calcYarnRequired() {
         var chest = size

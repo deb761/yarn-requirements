@@ -3,8 +3,8 @@ package com.inqint.yarnrequirements.Projects
 /**
  * Created by deb on 4/27/16.
  */
-open class Mittens(name: String, thumbImageID: Int, imageID: Int) :
-    SizeProject(name, thumbImageID, imageID) {
+open class Mittens(name: String, nameID: Int, thumbImageID: Int, imageID: Int) :
+    SizeProject(name, nameID, thumbImageID, imageID) {
     // Estimate the hand size and calculate yarn for two mittens
     override fun calcYarnRequired() {
         var width = size

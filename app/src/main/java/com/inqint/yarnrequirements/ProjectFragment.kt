@@ -92,7 +92,7 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         initTextChangedEvents()
 
-        name.text = project.name
+        name.text = getText(project.nameID)
         image.setImageResource(project.imageID)
         setInitialValues()
 

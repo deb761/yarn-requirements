@@ -10,8 +10,8 @@ import org.json.JSONObject
  * Handle the basics for all the projects that take just a size to estimate yarn
  */
 
-abstract class SizeProject(name: String, thumbImageID: Int, imageID: Int) :
-    Project(name, thumbImageID, imageID) {
+abstract class SizeProject(name: String, nameID: Int, thumbImageID: Int, imageID: Int) :
+    Project(name, nameID, thumbImageID, imageID) {
     var size: Double = 0.toDouble()
 
     var sizeUnits: ShortLengthUnits = ShortLengthUnits.cm

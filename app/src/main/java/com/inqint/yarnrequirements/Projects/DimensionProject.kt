@@ -8,8 +8,8 @@ import org.json.JSONObject
  * Created by deb on 11/25/16.
  */
 
-abstract class DimensionProject(name: String, thumbImageID: Int, imageID: Int) :
-    Project(name, thumbImageID, imageID) {
+abstract class DimensionProject(name: String, nameID: Int, thumbImageID: Int, imageID: Int) :
+    Project(name, nameID, thumbImageID, imageID) {
 
     var length: Double = 0.toDouble()
     var width: Double = 0.toDouble()

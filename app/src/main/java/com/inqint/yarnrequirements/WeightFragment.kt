@@ -27,7 +27,7 @@ class WeightFragment : Fragment() {
 
         var json = ""
         try {
-            val `is` = activity!!.assets.open("weights.json")
+            val `is` = requireActivity().assets.open("weights.json")
             val size = `is`.available()
             val buffer = ByteArray(size)
             `is`.read(buffer)

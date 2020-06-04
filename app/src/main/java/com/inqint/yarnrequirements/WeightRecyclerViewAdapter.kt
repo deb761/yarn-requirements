@@ -28,7 +28,7 @@ class WeightRecyclerViewAdapter(private val mValues: List<WeightItem>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var yarn = mValues[position]
-        holder.mItem = yarn!!
+        holder.mItem = yarn
         var nameId = holder.mNameView.resources.getIdentifier(yarn.name + "_yarn", "string", holder.mView.context.packageName)
         holder.mNameView.text = holder.mNameView.resources.getText(nameId)
         var sizes = ""
@@ -57,7 +57,7 @@ class WeightRecyclerViewAdapter(private val mValues: List<WeightItem>) :
         // Show the gauge
         val gauges = yarn.gauge
         val gaugeUnits = res.getString(R.string.gauge_length)
-        var gauge = ""
+        var gauge:String
         if (gauges.size == 2) {
             gauge = String.format(res.getString(R.string.unit_range_format), gauges[0], gauges[1], gaugeUnits)
         } else {
@@ -66,7 +66,7 @@ class WeightRecyclerViewAdapter(private val mValues: List<WeightItem>) :
         holder.mGaugeView.setText("${res.getString(R.string.gauge_label)}: $gauge")
 
         // format windings string
-        var wpi = ""
+        var wpi:String
         val windings = yarn.wpi
         val wpiUnits = res.getString(R.string.wpi)
         if (windings.size == 2) {

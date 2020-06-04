@@ -89,6 +89,9 @@ open class FreeActivity : MainActivity() {
                         if (consentInformation.isRequestLocationInEeaOrUnknown) {
                             requestConsent()
                         }
+                        else {
+                            loadAds(false)
+                        }
                     }
                 }
                 Log.d(TAG, "onConsentInfoUpdated, Consent Status = ${consentStatus.name}")
@@ -161,6 +164,7 @@ open class FreeActivity : MainActivity() {
     }
 
     private fun loadAds(showPersonlAds: Boolean) {
+        Log.d(TAG, "in loadAds")
         this.showPersonlAds = showPersonlAds
         val build: AdRequest
         if (!this.showPersonlAds)

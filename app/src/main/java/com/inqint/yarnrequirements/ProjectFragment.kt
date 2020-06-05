@@ -51,7 +51,7 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            val bundle = arguments!!
+            val bundle = requireArguments()
             if (bundle.containsKey("project")) {
                 if (Parcelable::class.java.isAssignableFrom(Project::class.java) ||
                     Serializable::class.java.isAssignableFrom(Project::class.java)) {
@@ -164,7 +164,7 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun initYarnUnitSpinner() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         val adapter = ArrayAdapter.createFromResource(
-            context!!,
+            requireContext(),
             R.array.long_length_units_array, R.layout.spinner
         )
         // Specify the layout to use when the list of choices appears
@@ -178,7 +178,7 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun initBallUnitSpinner() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         val adapter = ArrayAdapter.createFromResource(
-            context,
+            requireContext(),
             R.array.long_length_units_array, R.layout.spinner
         )
         // Specify the layout to use when the list of choices appears
@@ -192,7 +192,7 @@ open class ProjectFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun initPartialBallSpinner() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         val adapter = ArrayAdapter.createFromResource(
-            context,
+            requireContext(),
             R.array.partial_ball_array, R.layout.spinner
         )
         // Specify the layout to use when the list of choices appears

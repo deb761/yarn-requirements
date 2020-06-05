@@ -30,6 +30,14 @@
             {
               "client_id": "1031553085861-ueo82uc27mh36k3jaj2aerru8ck33gff.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1031553085861-93rj414aemq3anbjubmiqicm2j5ootfo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.inqint.yarncalcfree",
+                "app_store_id": "1467540958"
+              }
             }
           ]
         }

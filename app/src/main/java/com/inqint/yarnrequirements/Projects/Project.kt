@@ -5,6 +5,7 @@ import com.inqint.yarnrequirements.ProjectFragment
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.Serializable
+import kotlin.math.sqrt
 import kotlin.reflect.KClass
 
 
@@ -64,7 +65,7 @@ abstract class Project(var name: String, var nameID: Int, var thumbImageID: Int,
         val totalStitches = stitches * (rows + 2) // 2 for cast on and bind off.
 
         // calculate meters and add 20%
-        val meters = getStitchLength(siGauge, siWidth, siLength) * totalStitches.toDouble() * 1.2
+        val meters = getStitchLength(siGauge) * totalStitches.toDouble() * 1.2
 
         // Now convert the yarn required into the desired units
         if (yarnNeededUnits !== LongLengthUnits.meters) {
@@ -87,14 +88,14 @@ abstract class Project(var name: String, var nameID: Int, var thumbImageID: Int,
     }
 
     // Compute the length of a stitch in m, treating the row of stitches as a helix
-    private fun getStitchLength(cmGauge: Double, cmWidth: Double, cmLength: Double): Double {
+    private fun getStitchLength(cmGauge: Double): Double {
         val stitchWidth = 1.0 / cmGauge
         val stitchCir = Math.PI * stitchWidth
         // The stitch actually goes halfway into the neighboring stitch on each side
         val span = 2.0 * stitchWidth
         // use equation to calculate helical length, where the diameter is the stitchWidth and the
         // length is twice the stitchWidth, and convert to meters
-        return Math.sqrt(span * span + stitchCir * stitchCir) / 100.0
+        return sqrt(span * span + stitchCir * stitchCir) / 100.0
     }
 
     // Calculate the number of balls needed, taking into account the selected units
